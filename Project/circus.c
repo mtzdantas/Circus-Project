@@ -15,112 +15,171 @@ void profissional_relatorios(void);
 void sobre(void);
 void desenvolvedor(void);
 
-char option[2];
+char option;
+int stop = 1;
 
 int main(){
-    system("clear||cls");
-    printf("[1]Atrações\n"); printf("[2]Ingressos\n"); printf("[3]Sobre nós\n");
-    printf("[4]Desenvolvedor\n"); printf("[5]Sair\n"); printf("[0]Funcionários\n");
-    printf("DIGITE A OPÇÃO DESEJADA: ");
-    scanf("%s", option);
-    switch (option[0]){
-        case '0':
-            printf("RECONHECIMENTO DE SENHA PARA ACESSAR O PROFISSIONAL.");
-            intro_profissional();
-            break;
-        case '1':
-            printf("ATRAÇÕES CADASTRADAS.");
-            break;
-        case '2':
-            intro_ingressos();
-            break;
-        case '3':
-            sobre();
-            break;
-        case '4':
-            desenvolvedor();
-            break;
-        case '5':
-            printf("VOLTE SEMPRE!");
-            break;
-        default:
-            printf("POR FAVOR, SELECIONE UMA OPÇÃO VÁLIDA.");
-            break;
+    while (stop == 1){
+        system("clear||cls");
+        printf("[1]Atrações\n"); printf("[2]Ingressos\n"); printf("[3]Sobre nós\n");
+        printf("[4]Desenvolvedor\n"); printf("[5]Administração\n"); printf("[6]Sair\n");
+        printf("DIGITE A OPÇÃO DESEJADA: ");
+        scanf("%s", &option);
+        switch (option){
+            case '1':
+                system("clear||cls");
+                printf("ATRAÇÕES CADASTRADAS.\n");
+                system("pause");
+                break;
+            case '2':
+                intro_ingressos();
+                break;
+            case '3':
+                sobre();
+                break;
+            case '4':
+                desenvolvedor();
+                break;
+            case '5':
+                printf("RECONHECIMENTO DE SENHA PARA ACESSAR O PROFISSIONAL.\n");
+                system("pause");
+                intro_profissional();
+                break;
+            case '6':
+                printf("VOLTE SEMPRE!");
+                stop = 0;
+                break;
+            default:
+                printf("POR FAVOR, SELECIONE UMA OPÇÃO VÁLIDA.\n");
+                system("pause");
+                break;
+        }
     }
-    return 0; // Usar estrutura de repetição para sair do código apenas quando selecionar para sair.
 }
 
 void intro_ingressos(void){
-    system("clear||cls");
-    printf("[1]Comprar\n"); printf("[2]Cancelar\n"); printf("[3]Meu Carrinho\n");
-    printf("[4]Finalizar\n"); printf("[5]Compras Realizadas\n"); printf("[6]Voltar\n");
-    printf("DIGITE A OPÇÃO DESEJADA: ");
-    scanf("%s", option);
-    switch (option[0]){
-        case '1':
-            printf("TELA DE COMPRAR"); // Aqui terá que informar o código do show que será consultado ao clicar enter.
-            break;
-        case '2':
-            printf("CANCELAR COMPRAS"); // Aqui terá que informar o código do show que será consultado ao clicar enter.
-            break;
-        case '3':
-            printf("MEU CARRINHO"); // Aqui listará o que o cliente comprou até agora.
-            break;
-        case '4':
-            printf("FINALIZAR COMPRA"); // Aqui vai gerar um código para pagar e ao ser pago a compra é aprovada,
-            break; // diminuindo a quantidade de vagas e cadastrando nas vendas daquele evento. Pedir número/CPF/nome.
-        case '5':
-            printf("COMPRAS REALIZADAS"); // Aqui mostrará ingressos comprados quando for informado nome completo/CPF.
-            break;
-        case '6':
-            // Aqui apaga o carrinho do cliente e volta para tela inicial.
-            break; 
-        default:
-            printf("POR FAVOR, SELECIONE UMA OPÇÃO VÁLIDA.");
-            break;
+    stop = 0;
+    while (stop == 0){
+        system("clear||cls");
+        printf("[1]Comprar\n"); printf("[2]Cancelar\n"); printf("[3]Meu Carrinho\n");
+        printf("[4]Finalizar\n"); printf("[5]Compras Realizadas\n"); printf("[6]Voltar\n");
+        printf("DIGITE A OPÇÃO DESEJADA: ");
+        scanf("%s", &option);
+        switch (option){
+            case '1':
+                system("clear||cls");
+                printf("COMPRAR\n"); // Aqui terá que informar o código do show que será consultado ao clicar enter.
+                system("pause");
+                break;
+            case '2':
+                system("clear||cls");
+                printf("CANCELAR COMPRAS\n"); // Aqui terá que informar o código do show que será consultado ao clicar enter.
+                system("pause");
+                break;
+            case '3':
+                system("clear||cls");
+                printf("MEU CARRINHO\n"); // Aqui listará o que o cliente comprou até agora.
+                system("pause");
+                break;
+            case '4':
+                system("clear||cls");
+                printf("FINALIZAR COMPRA\n"); // Aqui vai gerar um código para pagar e ao ser pago a compra é aprovada,
+                system("pause"); // diminuindo a quantidade de vagas e cadastrando nas vendas daquele evento. Pedir número/CPF/nome.
+                break;
+            case '5':
+                system("clear||cls");
+                printf("COMPRAS REALIZADAS\n"); // Aqui mostrará ingressos comprados quando for informado nome completo/CPF.
+                system("pause");
+                break;
+            case '6':
+                // Aqui apaga o carrinho do cliente e volta para tela inicial.
+                stop = 1;
+                break; 
+            default:
+                printf("POR FAVOR, SELECIONE UMA OPÇÃO VÁLIDA.\n");
+                system("pause");
+                break;
+        }
     }
-    return 0; // Usar estrutura de repetição para sair do código apenas quando selecionar para sair.
 }
 
 void intro_profissional(void){
-    system("clear||cls");
-    printf("[1]Eventos\n"); // Usar no cadastro a localização, horário, data, preço
-    printf("[2]Relatórios\n"); // vagas disponibilizadas e código de show (para acessar informações facilmente).
-    printf("[3]Voltar\n");
-    printf("DIGITE A OPÇÃO DESEJADA: ");
-    scanf("%s", option);
-    switch (option[0]){
-        case '1':
-            profissional_eventos();
-            break;
-        case '2':
-            profissional_relatorios();
-            break;
-        case '3':
-            break;
-        default:
-            printf("POR FAVOR, SELECIONE UMA OPÇÃO VÁLIDA.");
-            break;
-    }      
+    stop = 0;
+    while (stop == 0){
+        system("clear||cls");
+        printf("[1]Eventos\n"); // Usar no cadastro a localização, horário, data, preço
+        printf("[2]Relatórios\n"); // vagas disponibilizadas e código de show (para acessar informações facilmente).
+        printf("[3]Voltar\n");
+        printf("DIGITE A OPÇÃO DESEJADA: ");
+        scanf("%s", &option);
+        switch (option){
+            case '1':
+                profissional_eventos();
+                break;
+            case '2':
+                profissional_relatorios();
+                break;
+            case '3':
+                stop = 1;
+                break;
+            default:
+                printf("POR FAVOR, SELECIONE UMA OPÇÃO VÁLIDA.\n");
+                system("pause");
+                break;
+        }
+    }    
 }            
 
 void profissional_eventos(void){
-    system("clear||cls");
-    printf("[1]Listar\n"); printf("[2]Cadastrar\n"); printf("[3]Cancelar\n");
-    printf("[4]Alterar\n"); printf("[5]Voltar\n");
-    printf("DIGITE A OPÇÃO DESEJADA: ");
-    scanf("%s", option);
-    // Usar no cadastro a localização, horário, data, preço, vagas disponibilizadas e código de show.
+    stop = 1;
+    while (stop == 1){
+        system("clear||cls");
+        printf("[1]Listar\n"); printf("[2]Cadastrar\n"); printf("[3]Cancelar\n");
+        printf("[4]Alterar\n"); printf("[5]Voltar\n");
+        printf("DIGITE A OPÇÃO DESEJADA: ");
+        scanf("%s", &option);
+        switch (option){
+            case '1':
+                system("clear||cls");
+                printf("LISTA DE EVENTOS.\n");
+                system("pause");
+                break;
+            case '2':
+                system("clear||cls");
+                printf("CADASTRAR EVENTOS\n");
+                system("pause");
+                // Usar no cadastro a localização, horário, data, preço, vagas disponibilizadas e código de show.
+                break;
+            case '3':
+                system("clear||cls");
+                printf("CANCELAR EVENTO.\n");
+                system("pause");
+                break;
+            case '4':
+                system("clear||cls");
+                printf("ALTERAR DADOS DE EVENTO.\n");
+                system("pause");
+                break;
+            case '5':
+                stop = 0;
+                break;
+            default:
+                printf("POR FAVOR, SELECIONE UMA OPÇÃO VÁLIDA.\n");
+                system("pause");
+                break;
+        }
+    }
 }
 
 void profissional_relatorios(void){
     system("clear||cls");
-    printf("GERANDO RELATÓRIOS..."); // Informações de quantas vendas foram feitas, e quanto foi arrecatado.
+    printf("GERANDO RELATÓRIOS...\n"); // Informações de quantas vendas foram feitas, e quanto foi arrecatado.
     system("pause");
 }
 
 void desenvolvedor(void){
     system("clear||cls");
+    printf("~ DESENVOLVEDOR \n"); printf("===================\n\n");
     printf("O projeto foi desenvolvido com o intuito de melhorar a gestão\n");
     printf("de eventos e ingressos de um circo, trazendo praticidade para\n");
     printf("clientes e funcionários.\n");
@@ -130,6 +189,7 @@ void desenvolvedor(void){
 
 void sobre(void){
     system("clear||cls");
+    printf("~ SOBRE NÓS \n"); printf("===============\n\n");
     printf("Bem-vindos ao nosso mágico mundo de diversão e maravilhas!\n");
     printf("Aqui, no nosso amado circo, estamos prontos para transportar\n");
     printf("você para um universo de encanto, risos e espetáculos incríveis.\n");
