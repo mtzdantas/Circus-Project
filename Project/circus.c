@@ -28,7 +28,7 @@ char trysenha[11];
 int option;
 int stop = 1;
 
-int main(){
+int main(void){
     setlocale(LC_ALL, "Portuguese_Brazil");
     while (stop == 1){
         system("clear||cls");
@@ -41,7 +41,8 @@ int main(){
             case 1:
                 system("clear||cls");
                 printf("ATRAÇÕES CADASTRADAS.\n");
-                system("pause");
+                printf("- \n- PRESSIONE ENTER PARA CONTINUAR. -");
+                getchar();
                 break;
             case 2:
                 intro_ingressos();
@@ -62,11 +63,13 @@ int main(){
             default:
                 system("clear||cls");
                 printf("POR FAVOR, SELECIONE UMA OPÇÃO VÁLIDA.\n");
-                system("pause");
+                printf("- \n- PRESSIONE ENTER PARA CONTINUAR. -");
+                getchar();
                 system("clear||cls");
                 break;
         }
     }
+    return 0;
 }
 
 void intro_ingressos(void){
@@ -82,27 +85,32 @@ void intro_ingressos(void){
             case 1:
                 system("clear||cls");
                 printf("COMPRAR\n"); // Aqui terá que informar o código do show que será consultado ao clicar enter.
-                system("pause");
+                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+                getchar();
                 break;
             case 2:
                 system("clear||cls");
                 printf("CANCELAR COMPRAS\n"); // Aqui terá que informar o código do show que será consultado ao clicar enter.
-                system("pause");
+                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+                getchar();
                 break;
             case 3:
                 system("clear||cls");
                 printf("MEU CARRINHO\n"); // Aqui listará o que o cliente comprou até agora.
-                system("pause");
+                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+                getchar();
                 break;
             case 4:
                 system("clear||cls");
                 printf("FINALIZAR COMPRA\n"); // Aqui vai gerar um código para pagar e ao ser pago a compra é aprovada,
-                system("pause"); // diminuindo a quantidade de vagas e cadastrando nas vendas daquele evento. Pedir número/CPF/nome.
+                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+                getchar(); // diminuindo a quantidade de vagas e cadastrando nas vendas daquele evento. Pedir número/CPF/nome.
                 break;
             case 5:
                 system("clear||cls");
                 printf("COMPRAS REALIZADAS\n"); // Aqui mostrará ingressos comprados quando for informado nome completo/CPF.
-                system("pause");
+                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+                getchar();
                 break;
             case 6:
                 // Aqui apaga o carrinho do cliente e volta para tela inicial.
@@ -110,7 +118,8 @@ void intro_ingressos(void){
                 break; 
             default:
                 printf("POR FAVOR, SELECIONE UMA OPÇÃO VÁLIDA.\n");
-                system("pause");
+                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+                getchar();
                 break;
         }
     }
@@ -132,7 +141,8 @@ void verificar_profissional(void){
         checksen = strcmp(senha, trysenha);
         if (checklog == 0 && checksen == 0) {
             printf("LOGIN REALIZADO COM SUCESSO.\n");
-            system("pause");
+            printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+            getchar();
             intro_profissional();
         }
         else {
@@ -169,7 +179,8 @@ void intro_profissional(void){
                 break;
             default:
                 printf("POR FAVOR, SELECIONE UMA OPÇÃO VÁLIDA.\n");
-                system("pause");
+                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+                getchar();
                 break;
         }
     }    
@@ -188,30 +199,35 @@ void profissional_eventos(void){
             case 1:
                 system("clear||cls");
                 printf("LISTA DE eventos.\n");
-                system("pause");
+                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+                getchar();
                 break;
             case 2:
                 system("clear||cls");
                 printf("CADASTRAR eventos\n");
-                system("pause");
+                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+                getchar();
                 // Usar no cadastro a localização, horário, data, preço, vagas disponibilizadas e código de show.
                 break;
             case 3:
                 system("clear||cls");
                 printf("CANCELAR EVENTO.\n");
-                system("pause");
+                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+                getchar();
                 break;
             case 4:
                 system("clear||cls");
                 printf("ALTERAR DADOS DE EVENTO.\n");
-                system("pause");
+                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+                getchar();
                 break;
             case 5:
                 stop = 0;
                 break;
             default:
                 printf("POR FAVOR, SELECIONE UMA OPÇÃO VÁLIDA.\n");
-                system("pause");
+                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+                getchar();
                 break;
         }
     }
@@ -220,7 +236,8 @@ void profissional_eventos(void){
 void profissional_relatorios(void){
     system("clear||cls");
     printf("GERANDO RELATÓRIOS...\n"); // Informações de quantas vendas foram feitas, e quanto foi arrecatado.
-    system("pause");
+    printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+                getchar();
 }
 
 void desenvolvedor(void){
@@ -230,7 +247,8 @@ void desenvolvedor(void){
     printf("de eventos e ingressos de um circo, trazendo praticidade para\n");
     printf("clientes e funcionários.\n");
     printf("~ Developed By Mateus Dantas de Oliveira.\n");
-    system("pause");
+    printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+    getchar();
 }
 
 void sobre(void){
@@ -241,5 +259,6 @@ void sobre(void){
     printf("você para um universo de encanto, risos e espetáculos incríveis.\n");
     printf("Permita-nos apresentar o 'GRAN C-IRCO' - um lugar onde os sonhos\n");
     printf("ganham vida sob a grande lona e onde a imaginação não tem limites.\n");
-    system("pause");
+    printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+    getchar();
 }
