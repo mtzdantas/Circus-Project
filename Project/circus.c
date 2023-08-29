@@ -5,10 +5,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <locale.h>
 
 void intro_ingressos(void);
 
+void verificar_profissional(void);
 void intro_profissional(void);
 void profissional_eventos(void);
 void profissional_relatorios(void);
@@ -16,39 +18,44 @@ void profissional_relatorios(void);
 void sobre(void);
 void desenvolvedor(void);
 
-char option;
+// VARIAVÉIS DE LOGIN
+char login[6] = {"circo"};
+char senha[9] = {"circo123"};
+char trylogin[11];
+char trysenha[11];
+
+// VARIAVÉIS DE MENUS
+int option;
 int stop = 1;
 
 int main(){
     setlocale(LC_ALL, "Portuguese_Brazil");
-
     while (stop == 1){
         system("clear||cls");
         printf("[1]Atrações\n"); printf("[2]Ingressos\n"); printf("[3]Sobre nós\n");
         printf("[4]Desenvolvedor\n"); printf("[5]Administração\n"); printf("[6]Sair\n");
         printf("DIGITE A OPÇÃO DESEJADA: ");
-        scanf("%s", &option);
+        scanf("%d", &option);
+        fflush(stdin);
         switch (option){
-            case '1':
+            case 1:
                 system("clear||cls");
                 printf("ATRAÇÕES CADASTRADAS.\n");
                 system("pause");
                 break;
-            case '2':
+            case 2:
                 intro_ingressos();
                 break;
-            case '3':
+            case 3:
                 sobre();
                 break;
-            case '4':
+            case 4:
                 desenvolvedor();
                 break;
-            case '5':
-                printf("RECONHECIMENTO DE SENHA PARA ACESSAR O PROFISSIONAL.\n");
-                system("pause");
-                intro_profissional();
+            case 5:
+                verificar_profissional();
                 break;
-            case '6':
+            case 6:
                 printf("VOLTE SEMPRE!");
                 stop = 0;
                 break;
@@ -69,34 +76,35 @@ void intro_ingressos(void){
         printf("[1]Comprar\n"); printf("[2]Cancelar\n"); printf("[3]Meu Carrinho\n");
         printf("[4]Finalizar\n"); printf("[5]Compras Realizadas\n"); printf("[6]Voltar\n");
         printf("DIGITE A OPÇÃO DESEJADA: ");
-        scanf("%s", &option);
+        scanf("%d", &option);
+        fflush(stdin);
         switch (option){
-            case '1':
+            case 1:
                 system("clear||cls");
                 printf("COMPRAR\n"); // Aqui terá que informar o código do show que será consultado ao clicar enter.
                 system("pause");
                 break;
-            case '2':
+            case 2:
                 system("clear||cls");
                 printf("CANCELAR COMPRAS\n"); // Aqui terá que informar o código do show que será consultado ao clicar enter.
                 system("pause");
                 break;
-            case '3':
+            case 3:
                 system("clear||cls");
                 printf("MEU CARRINHO\n"); // Aqui listará o que o cliente comprou até agora.
                 system("pause");
                 break;
-            case '4':
+            case 4:
                 system("clear||cls");
                 printf("FINALIZAR COMPRA\n"); // Aqui vai gerar um código para pagar e ao ser pago a compra é aprovada,
                 system("pause"); // diminuindo a quantidade de vagas e cadastrando nas vendas daquele evento. Pedir número/CPF/nome.
                 break;
-            case '5':
+            case 5:
                 system("clear||cls");
                 printf("COMPRAS REALIZADAS\n"); // Aqui mostrará ingressos comprados quando for informado nome completo/CPF.
                 system("pause");
                 break;
-            case '6':
+            case 6:
                 // Aqui apaga o carrinho do cliente e volta para tela inicial.
                 stop = 1;
                 break; 
@@ -108,6 +116,37 @@ void intro_ingressos(void){
     }
 }
 
+void verificar_profissional(void){
+    int checklog = 1;
+    int checksen = 1;
+    int cancel = 1;
+    while (checklog != 0 || checksen != 0){
+        system("clear||cls");
+        printf("INFORME O LOGIN:\n");
+        gets(trylogin);
+        fflush(stdin);
+        printf("INFORME A SENHA:\n");
+        gets(trysenha);
+        fflush(stdin);
+        checklog = strcmp(login, trylogin);
+        checksen = strcmp(senha, trysenha);
+        if (checklog == 0 && checksen == 0) {
+            printf("LOGIN REALIZADO COM SUCESSO.\n");
+            system("pause");
+            intro_profissional();
+        }
+        else {
+            printf("LOGIN OU SENHA INCORRETOS.\n");
+            printf("DIGITE '1' PARA CONTINUAR E '2' PARA SAIR.\n");
+            scanf("%d", &cancel);
+            fflush(stdin);
+            if (cancel == 2){
+                break;
+            }
+        }
+    }        
+}
+
 void intro_profissional(void){
     stop = 0;
     while (stop == 0){
@@ -116,15 +155,16 @@ void intro_profissional(void){
         printf("[2]Relatórios\n"); // vagas disponibilizadas e código de show (para acessar informações facilmente).
         printf("[3]Voltar\n");
         printf("DIGITE A OPÇÃO DESEJADA: ");
-        scanf("%s", &option);
+        scanf("%d", &option);
+        fflush(stdin);
         switch (option){
-            case '1':
+            case 1:
                 profissional_eventos();
                 break;
-            case '2':
+            case 2:
                 profissional_relatorios();
                 break;
-            case '3':
+            case 3:
                 stop = 1;
                 break;
             default:
@@ -142,30 +182,31 @@ void profissional_eventos(void){
         printf("[1]Listar\n"); printf("[2]Cadastrar\n"); printf("[3]Cancelar\n");
         printf("[4]Alterar\n"); printf("[5]Voltar\n");
         printf("DIGITE A OPÇÃO DESEJADA: ");
-        scanf("%s", &option);
+        scanf("%d", &option);
+        fflush(stdin);
         switch (option){
-            case '1':
+            case 1:
                 system("clear||cls");
                 printf("LISTA DE EVENTOS.\n");
                 system("pause");
                 break;
-            case '2':
+            case 2:
                 system("clear||cls");
                 printf("CADASTRAR EVENTOS\n");
                 system("pause");
                 // Usar no cadastro a localização, horário, data, preço, vagas disponibilizadas e código de show.
                 break;
-            case '3':
+            case 3:
                 system("clear||cls");
                 printf("CANCELAR EVENTO.\n");
                 system("pause");
                 break;
-            case '4':
+            case 4:
                 system("clear||cls");
                 printf("ALTERAR DADOS DE EVENTO.\n");
                 system("pause");
                 break;
-            case '5':
+            case 5:
                 stop = 0;
                 break;
             default:
@@ -202,3 +243,4 @@ void sobre(void){
     printf("ganham vida sob a grande lona e onde a imaginação não tem limites.\n");
     system("pause");
 }
+
