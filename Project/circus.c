@@ -1,6 +1,6 @@
 // Universidade Federal do Rio Grande do Norte
-// Disciplina DCT1106 -- Programação
-// Projeto Sistema de Gestão de um Circo
+// Disciplina DCT1106 -- Programa??o
+// Projeto Sistema de Gest?o de um Circo
 // Developed by Mateus Dantas de Oliveira
 
 #include <stdio.h>
@@ -18,13 +18,13 @@ void profissional_relatorios(void);
 void sobre(void);
 void desenvolvedor(void);
 
-// VARIAVÉIS DE LOGIN
+// VARIÁVEIS DE LOGIN
 char login[6] = {"circo"};
 char senha[9] = {"circo123"};
 char trylogin[11];
 char trysenha[11];
 
-// VARIAVÉIS DE MENUS
+// VARIÁVEIS DE MENUS
 int option;
 int stop = 1;
 
@@ -32,7 +32,7 @@ int main(){
     setlocale(LC_ALL, "Portuguese_Brazil");
     while (stop == 1){
         system("clear||cls");
-        printf("[1]Atrações\n"); printf("[2]Ingressos\n"); printf("[3]Sobre nós\n");
+        printf("[1]Atrações\n"); printf("[2]Ingressos\n"); printf("[3]Sobre Nós\n");
         printf("[4]Desenvolvedor\n"); printf("[5]Administração\n"); printf("[6]Sair\n");
         printf("DIGITE A OPÇÃO DESEJADA: ");
         scanf("%d", &option);
@@ -151,7 +151,7 @@ void intro_profissional(void){
     stop = 0;
     while (stop == 0){
         system("clear||cls");
-        printf("[1]Eventos\n"); // Usar no cadastro a localização, horário, data, preço
+        printf("[1]eventos\n"); // Usar no cadastro a localização, horário, data, preço
         printf("[2]Relatórios\n"); // vagas disponibilizadas e código de show (para acessar informações facilmente).
         printf("[3]Voltar\n");
         printf("DIGITE A OPÇÃO DESEJADA: ");
@@ -187,12 +187,12 @@ void profissional_eventos(void){
         switch (option){
             case 1:
                 system("clear||cls");
-                printf("LISTA DE EVENTOS.\n");
+                printf("LISTA DE eventos.\n");
                 system("pause");
                 break;
             case 2:
                 system("clear||cls");
-                printf("CADASTRAR EVENTOS\n");
+                printf("CADASTRAR eventos\n");
                 system("pause");
                 // Usar no cadastro a localização, horário, data, preço, vagas disponibilizadas e código de show.
                 break;
@@ -243,4 +243,3 @@ void sobre(void){
     printf("ganham vida sob a grande lona e onde a imaginação não tem limites.\n");
     system("pause");
 }
-
