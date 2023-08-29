@@ -41,7 +41,7 @@ int main(void){
             case 1:
                 system("clear||cls");
                 printf("ATRAÇÕES CADASTRADAS.\n");
-                printf("- \n- PRESSIONE ENTER PARA CONTINUAR. -");
+                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
                 getchar();
                 break;
             case 2:
@@ -63,7 +63,7 @@ int main(void){
             default:
                 system("clear||cls");
                 printf("POR FAVOR, SELECIONE UMA OPÇÃO VÁLIDA.\n");
-                printf("- \n- PRESSIONE ENTER PARA CONTINUAR. -");
+                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
                 getchar();
                 system("clear||cls");
                 break;
@@ -161,7 +161,7 @@ void intro_profissional(void){
     stop = 0;
     while (stop == 0){
         system("clear||cls");
-        printf("[1]eventos\n"); // Usar no cadastro a localização, horário, data, preço
+        printf("[1]Eventos\n"); // Usar no cadastro a localização, horário, data, preço
         printf("[2]Relatórios\n"); // vagas disponibilizadas e código de show (para acessar informações facilmente).
         printf("[3]Voltar\n");
         printf("DIGITE A OPÇÃO DESEJADA: ");
