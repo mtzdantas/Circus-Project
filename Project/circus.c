@@ -6,7 +6,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <locale.h>
 
 void listar_atracoes(void);
 
@@ -29,24 +28,23 @@ void profissional_relatorios(void);
 void opcao_invalida(void);
 
 
-// VARI¡VEIS DE LOGIN
+// VARI√ÅVEIS DE LOGIN
 char login[6] = {"circo"};
 char senha[9] = {"circo123"};
 char trylogin[11];
 char trysenha[11];
 
-// VARI¡VEIS DE MENUS
+// VARI√ÅVEIS DE MENUS
 int option;
 int stop = 1;
 
 int main(void){
-    setlocale(LC_ALL, "Portuguese_Brazil");
     while (stop == 1){
         system("clear||cls");
-        printf("===============================\n        ~ GRAN C-IRCO ~\n    O VERDADEIRO ESPET¡CULO\n===============================\n");
-        printf("[1]AtraÁıes\n"); printf("[2]Ingressos\n"); printf("[3]Sobre NÛs\n");
-        printf("[4]Desenvolvedor\n"); printf("[5]AdministraÁ„o\n"); printf("[6]Sair\n");
-        printf("DIGITE A OP«√O DESEJADA: ");
+        printf("===============================\n        ~ GRAN C-IRCO ~\n    O VERDADEIRO ESPET√ÅCULO\n===============================\n");
+        printf("[1]Atra√ß√µes\n"); printf("[2]Ingressos\n"); printf("[3]Sobre N√≥s\n");
+        printf("[4]Desenvolvedor\n"); printf("[5]Administra√ß√£o\n"); printf("[6]Sair\n");
+        printf("DIGITE A OP√á√ÉO DESEJADA: ");
         scanf("%d", &option);
         fflush(stdin);
         switch (option){
@@ -81,7 +79,7 @@ int main(void){
 
 void listar_atracoes(void){
     system("clear||cls");
-    printf("ATRA«’ES CADASTRADAS.\n");
+    printf("ATRA√á√ïES CADASTRADAS.\n");
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
@@ -96,7 +94,7 @@ void intro_ingressos(void){
         printf("===============================\n        ~ GRAN C-IRCO ~\n           INGRESSOS\n===============================\n");
         printf("[1]Comprar\n"); printf("[2]Cancelar\n"); printf("[3]Meu Carrinho\n");
         printf("[4]Finalizar\n"); printf("[5]Compras Realizadas\n"); printf("[6]Voltar\n");
-        printf("DIGITE A OP«√O DESEJADA: ");
+        printf("DIGITE A OP√á√ÉO DESEJADA: ");
         scanf("%d", &option);
         fflush(stdin);
         switch (option){
@@ -127,7 +125,7 @@ void intro_ingressos(void){
 
 void ingressos_comprar(void){
     system("clear||cls");
-                printf("COMPRAR\n"); // Aqui ter· que informar o cÛdigo do show que ser· consultado ao clicar enter.
+                printf("COMPRAR\n"); // Aqui ter√° que informar o c√≥digo do show que ser√° consultado ao clicar enter.
                 printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
                 getchar();
                 fflush(stdin);
@@ -135,7 +133,7 @@ void ingressos_comprar(void){
 
 void ingressos_cancelar(void){
     system("clear||cls");
-    printf("CANCELAR COMPRAS\n"); // Aqui ter· que informar o cÛdigo do show que ser· consultado ao clicar enter.
+    printf("CANCELAR COMPRAS\n"); // Aqui ter√° que informar o c√≥digo do show que ser√° consultado ao clicar enter.
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
@@ -143,7 +141,7 @@ void ingressos_cancelar(void){
 
 void ingressos_carrinho(void){
     system("clear||cls");
-    printf("MEU CARRINHO\n"); // Aqui listar· o que o cliente comprou atÈ agora.
+    printf("MEU CARRINHO\n"); // Aqui listar√° o que o cliente comprou at√© agora.
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
@@ -151,15 +149,15 @@ void ingressos_carrinho(void){
 
 void ingressos_finalizar(void){
     system("clear||cls");
-    printf("FINALIZAR COMPRA\n"); // Aqui vai gerar um cÛdigo para pagar e ao ser pago a compra È aprovada,
+    printf("FINALIZAR COMPRA\n"); // Aqui vai gerar um c√≥digo para pagar e ao ser pago a compra √© aprovada,
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-    getchar(); // diminuindo a quantidade de vagas e cadastrando nas vendas daquele evento. Pedir n˙mero/CPF/nome.
+    getchar(); // diminuindo a quantidade de vagas e cadastrando nas vendas daquele evento. Pedir n√∫mero/CPF/nome.
     fflush(stdin);
 }
 
 void ingressos_comprados(void){
     system("clear||cls");
-    printf("COMPRAS REALIZADAS\n"); // Aqui mostrar· ingressos comprados quando for informado nome completo/CPF.
+    printf("COMPRAS REALIZADAS\n"); // Aqui mostrar√° ingressos comprados quando for informado nome completo/CPF.
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
@@ -210,11 +208,11 @@ void intro_profissional(void){
     stop = 0;
     while (stop == 0){
         system("clear||cls");
-        printf("===============================\n        ~ GRAN C-IRCO ~\n     BEM VINDO FUNCION¡RIO\n===============================\n");
-        printf("[1]Eventos\n"); // Usar no cadastro a localizaÁ„o, hor·rio, data, preÁo
-        printf("[2]RelatÛrios\n"); // vagas disponibilizadas e cÛdigo de show (para acessar informaÁıes facilmente).
+        printf("===============================\n        ~ GRAN C-IRCO ~\n     BEM VINDO FUNCION√ÅRIO\n===============================\n");
+        printf("[1]Eventos\n"); // Usar no cadastro a localiza√ß√£o, hor√°rio, data, pre√ßo
+        printf("[2]Relat√≥rios\n"); // vagas disponibilizadas e c√≥digo de show (para acessar informa√ß√µes facilmente).
         printf("[3]Voltar\n");
-        printf("DIGITE A OP«√O DESEJADA: ");
+        printf("DIGITE A OP√á√ÉO DESEJADA: ");
         scanf("%d", &option);
         fflush(stdin);
         switch (option){
@@ -241,7 +239,7 @@ void profissional_eventos(void){
         printf("===============================\n        ~ GRAN C-IRCO ~\n            EVENTOS\n===============================\n");
         printf("[1]Listar\n"); printf("[2]Cadastrar\n"); printf("[3]Cancelar\n");
         printf("[4]Alterar\n"); printf("[5]Voltar\n");
-        printf("DIGITE A OP«√O DESEJADA: ");
+        printf("DIGITE A OP√á√ÉO DESEJADA: ");
         scanf("%d", &option);
         fflush(stdin);
         switch (option){
@@ -258,7 +256,7 @@ void profissional_eventos(void){
                 printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
                 getchar();
                 fflush(stdin);
-                // Usar no cadastro a localizaÁ„o, hor·rio, data, preÁo, vagas disponibilizadas e cÛdigo de show.
+                // Usar no cadastro a localiza√ß√£o, hor√°rio, data, pre√ßo, vagas disponibilizadas e c√≥digo de show.
                 break;
             case 3:
                 system("clear||cls");
@@ -286,8 +284,8 @@ void profissional_eventos(void){
 
 void profissional_relatorios(void){
     system("clear||cls");
-    printf("===============================\n        ~ GRAN C-IRCO ~\n           RELAT”RIO\n===============================\n");
-    printf("GERANDO RELAT”RIOS...\n"); // InformaÁıes de quantas vendas foram feitas, e quanto foi arrecatado.
+    printf("===============================\n        ~ GRAN C-IRCO ~\n           RELAT√ìRIO\n===============================\n");
+    printf("GERANDO RELAT√ìRIOS...\n"); // Informa√ß√µes de quantas vendas foram feitas, e quanto foi arrecatado.
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
@@ -298,9 +296,9 @@ void profissional_relatorios(void){
 void desenvolvedor(void){
     system("clear||cls");
     printf("===============================\n        ~ GRAN C-IRCO ~\n         DESENVOLVEDOR\n===============================\n");
-    printf("O projeto foi desenvolvido com o intuito de melhorar a gest„o\n");
+    printf("O projeto foi desenvolvido com o intuito de melhorar a gest√£o\n");
     printf("de eventos e ingressos de um circo, trazendo praticidade para\n");
-    printf("clientes e funcion·rios.\n");
+    printf("clientes e funcion√°rios.\n");
     printf("~ Developed By Mateus Dantas de Oliveira.\n");
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
@@ -309,12 +307,12 @@ void desenvolvedor(void){
 
 void sobre(void){
     system("clear||cls");
-    printf("===============================\n        ~ GRAN C-IRCO ~\n           SOBRE N”S\n===============================\n");
-    printf("Bem-vindos ao nosso m·gico mundo de divers„o e maravilhas!\n");
+    printf("===============================\n        ~ GRAN C-IRCO ~\n           SOBRE N√ìS\n===============================\n");
+    printf("Bem-vindos ao nosso m√°gico mundo de divers√£o e maravilhas!\n");
     printf("Aqui, no nosso amado circo, estamos prontos para transportar\n");
-    printf("vocÍ para um universo de encanto, risos e espet·culos incrÌveis.\n");
+    printf("voc√™ para um universo de encanto, risos e espet√°culos incr√≠veis.\n");
     printf("Permita-nos apresentar o 'GRAN C-IRCO' - um lugar onde os sonhos\n");
-    printf("ganham vida sob a grande lona e onde a imaginaÁ„o n„o tem limites.\n");
+    printf("ganham vida sob a grande lona e onde a imagina√ß√£o n√£o tem limites.\n");
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
@@ -324,7 +322,7 @@ void sobre(void){
 
 void opcao_invalida(void){
     system("clear||cls");
-    printf("POR FAVOR, SELECIONE UMA OP«√O V¡LIDA.\n");
+    printf("POR FAVOR, SELECIONE UMA OP√á√ÉO V√ÅLIDA.\n");
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
