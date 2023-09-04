@@ -1,6 +1,6 @@
 // Universidade Federal do Rio Grande do Norte
-// Disciplina DCT1106 -- Programa??o
-// Projeto Sistema de Gest?o de um Circo
+// Disciplina DCT1106 -- Programação
+// Projeto Sistema de Gestão de um Circo
 // Developed by Mateus Dantas de Oliveira
 
 #include <stdio.h>
@@ -27,14 +27,6 @@ void profissional_relatorios(void);
 
 void opcao_invalida(void);
 
-
-// VARIÁVEIS DE LOGIN
-char login[6] = {"circo"};
-char senha[9] = {"circo123"};
-char trylogin[11];
-char trysenha[11];
-
-// VARIÁVEIS DE MENUS
 int option;
 int stop = 1;
 
@@ -171,20 +163,20 @@ void ingressos_sair(void){
 
 
 void verificar_profissional(void){
-    int checklog = 1;
-    int checksen = 1;
-    int cancel = 1;
+    char entrar[2][9] = {"circo", "circo123"};
+    char tryentrar[2][9];
+    int checklog = 1, checksen = 1, cancel = 1;
     while (checklog != 0 || checksen != 0){
         system("clear||cls");
         printf("===============================\n        ~ GRAN C-IRCO ~\n       LOGIN EMPRESARIAL\n===============================\n");
         printf("INFORME O LOGIN:\n");
-        gets(trylogin);
+        gets(tryentrar[0]);
         fflush(stdin);
         printf("INFORME A SENHA:\n");
-        gets(trysenha);
+        gets(tryentrar[1]);
         fflush(stdin);
-        checklog = strcmp(login, trylogin);
-        checksen = strcmp(senha, trysenha);
+        checklog = strcmp(entrar[0], tryentrar[0]);
+        checksen = strcmp(entrar[1], tryentrar[1]);
         if (checklog == 0 && checksen == 0) {
             printf("LOGIN REALIZADO COM SUCESSO.\n");
             printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
