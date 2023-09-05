@@ -23,6 +23,10 @@ void desenvolvedor(void);
 void verificar_profissional(void);
 void intro_profissional(void);
 void profissional_eventos(void);
+void eventos_listar(void);
+void eventos_cadastrar(void);
+void eventos_cancelar(void);
+void eventos_alterar(void);
 void profissional_relatorios(void);
 
 void opcao_invalida(void);
@@ -236,33 +240,16 @@ void profissional_eventos(void){
         fflush(stdin);
         switch (option){
             case 1:
-                system("clear||cls");
-                printf("LISTA DE EVENTOS.\n");
-                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-                getchar();
-                fflush(stdin);
+                eventos_listar();
                 break;
             case 2:
-                system("clear||cls");
-                printf("CADASTRAR EVENTOS\n");
-                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-                getchar();
-                fflush(stdin);
-                // Usar no cadastro a localização, horário, data, preço, vagas disponibilizadas e código de show.
+                eventos_cadastrar();
                 break;
             case 3:
-                system("clear||cls");
-                printf("CANCELAR EVENTO.\n");
-                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-                getchar();
-                fflush(stdin);
+                eventos_cancelar();
                 break;
             case 4:
-                system("clear||cls");
-                printf("ALTERAR DADOS DO EVENTO.\n");
-                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-                getchar();
-                fflush(stdin);
+                eventos_alterar();
                 break;
             case 5:
                 stop = 0;
@@ -272,6 +259,39 @@ void profissional_eventos(void){
                 break;
         }
     }
+}
+
+void eventos_listar(void){
+    system("clear||cls");
+    printf("LISTA DE EVENTOS.\n");
+    printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+    getchar();
+    fflush(stdin);
+}
+
+void eventos_cadastrar(void){
+    system("clear||cls");
+    printf("CADASTRAR EVENTOS\n");
+    printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+    getchar();
+    fflush(stdin);
+    // Usar no cadastro a localização, horário, data, preço, vagas disponibilizadas e código de show.
+}
+
+void eventos_cancelar(void){
+    system("clear||cls");
+    printf("CANCELAR EVENTO.\n");
+    printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+    getchar();
+    fflush(stdin);
+}
+
+void eventos_alterar(void){
+    system("clear||cls");
+    printf("ALTERAR DADOS DO EVENTO.\n");
+    printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+    getchar();
+    fflush(stdin);
 }
 
 void profissional_relatorios(void){
