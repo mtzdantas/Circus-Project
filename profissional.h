@@ -1,4 +1,5 @@
 int verificar_profissional(void);
+void intro_profissional(void);
 void profissional_eventos(void);
 void eventos_listar(void);
 void eventos_cadastrar(void);

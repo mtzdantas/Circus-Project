@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "profissional.h"
-int optionn;
-int stopp = 1;
 
 int verificar_profissional(){
     char entrar[2][9] = {"circo", "circo123"};
@@ -39,17 +37,47 @@ int verificar_profissional(){
     }        
 }
 
+void intro_profissional(void){
+    int option;
+    int stop = 0;
+    while (stop == 0){
+        system("clear||cls");
+        wprintf(L"===============================\n        ~ GRAN C-IRCO ~\n     BEM VINDO FUNCIONÁRIO\n===============================\n");
+        wprintf(L"[1]Eventos\n"); // Usar no cadastro a localização, horário, data, preço
+        wprintf(L"[2]Relatórios\n"); // vagas disponibilizadas e código de show (para acessar informações facilmente).
+        wprintf(L"[3]Voltar\n");
+        wprintf(L"DIGITE A OPÇÃO DESEJADA: ");
+        scanf("%d", &option);
+        fflush(stdin);
+        switch (option){
+            case 1:
+                profissional_eventos();
+                break;
+            case 2:
+                profissional_relatorios();
+                break;
+            case 3:
+                stop = 1;
+                break;
+            default:
+                opcao_invalida();
+                break;
+        }
+    }    
+}            
+
 void profissional_eventos(void){
-    stopp = 1;
-    while (stopp == 1){
+    int option;
+    int stop = 1;
+    while (stop == 1){
         system("clear||cls");
         wprintf(L"===============================\n        ~ GRAN C-IRCO ~\n            EVENTOS\n===============================\n");
         wprintf(L"[1]Listar\n"); wprintf(L"[2]Cadastrar\n"); wprintf(L"[3]Cancelar\n");
         wprintf(L"[4]Alterar\n"); wprintf(L"[5]Voltar\n");
         wprintf(L"DIGITE A OPÇÃO DESEJADA: ");
-        scanf("%d", &optionn);
+        scanf("%d", &option);
         fflush(stdin);
-        switch (optionn){
+        switch (option){
             case 1:
                 eventos_listar();
                 break;
@@ -63,7 +91,7 @@ void profissional_eventos(void){
                 eventos_alterar();
                 break;
             case 5:
-                stopp = 0;
+                stop = 0;
                 break;
             default:
                 opcao_invalida();

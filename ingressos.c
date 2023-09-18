@@ -2,6 +2,44 @@
 #include <stdlib.h>
 #include "ingressos.h"
 
+void intro_ingressos(void){
+    int stop = 0;
+    int option;
+    while (stop == 0){
+        system("clear||cls");
+        wprintf(L"===============================\n        ~ GRAN C-IRCO ~\n           INGRESSOS\n===============================\n");
+        wprintf(L"[1]Comprar\n"); wprintf(L"[2]Cancelar\n"); wprintf(L"[3]Meu Carrinho\n");
+        wprintf(L"[4]Finalizar\n"); wprintf(L"[5]Compras Realizadas\n"); wprintf(L"[6]Voltar\n");
+        wprintf(L"DIGITE A OPÇÃO DESEJADA: ");
+        scanf("%d", &option);
+        fflush(stdin);
+        switch (option){
+            case 1: 
+                ingressos_comprar();
+                break;
+            case 2:
+                ingressos_cancelar();
+                break;
+            case 3:
+                ingressos_carrinho();
+                break;
+            case 4:
+                ingressos_finalizar();
+                break;
+            case 5:
+                ingressos_comprados();
+                break;
+            case 6:
+                ingressos_sair();
+                stop = 1;
+                break; 
+            default:
+                opcao_invalida();
+                break;
+        }
+    }
+}
+
 void ingressos_comprar(void){
     system("clear||cls");
     wprintf(L"===============================\n        ~ GRAN C-IRCO ~\n            COMPRAR\n===============================\n");

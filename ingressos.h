@@ -1,3 +1,4 @@
+void intro_ingressos(void);
 void ingressos_comprar(void);
 void ingressos_cancelar(void);
 void ingressos_carrinho(void);

@@ -9,15 +9,14 @@
 #include <locale.h>
 #include "ingressos.h"
 #include "profissional.h"
-int option ;
-int stop = 1;
 
-void intro_ingressos(void);
 void intro_profissional(void);
 void sobre(void);
 void desenvolvedor(void);
 
 int main(){
+    int option;
+    int stop = 1;
     setlocale(LC_CTYPE , "" );
     while (stop == 1){
         system("clear||cls");
@@ -56,71 +55,6 @@ int main(){
     }
     return 0;
 }
-
-void intro_ingressos(void){
-    stop = 0;
-    while (stop == 0){
-        system("clear||cls");
-        wprintf(L"===============================\n        ~ GRAN C-IRCO ~\n           INGRESSOS\n===============================\n");
-        wprintf(L"[1]Comprar\n"); wprintf(L"[2]Cancelar\n"); wprintf(L"[3]Meu Carrinho\n");
-        wprintf(L"[4]Finalizar\n"); wprintf(L"[5]Compras Realizadas\n"); wprintf(L"[6]Voltar\n");
-        wprintf(L"DIGITE A OPÇÃO DESEJADA: ");
-        scanf("%d", &option);
-        fflush(stdin);
-        switch (option){
-            case 1: 
-                ingressos_comprar();
-                break;
-            case 2:
-                ingressos_cancelar();
-                break;
-            case 3:
-                ingressos_carrinho();
-                break;
-            case 4:
-                ingressos_finalizar();
-                break;
-            case 5:
-                ingressos_comprados();
-                break;
-            case 6:
-                ingressos_sair();
-                stop = 1;
-                break; 
-            default:
-                opcao_invalida();
-                break;
-        }
-    }
-}
-
-void intro_profissional(void){
-    stop = 0;
-    while (stop == 0){
-        system("clear||cls");
-        wprintf(L"===============================\n        ~ GRAN C-IRCO ~\n     BEM VINDO FUNCIONÁRIO\n===============================\n");
-        wprintf(L"[1]Eventos\n"); // Usar no cadastro a localização, horário, data, preço
-        wprintf(L"[2]Relatórios\n"); // vagas disponibilizadas e código de show (para acessar informações facilmente).
-        wprintf(L"[3]Voltar\n");
-        wprintf(L"DIGITE A OPÇÃO DESEJADA: ");
-        scanf("%d", &option);
-        fflush(stdin);
-        switch (option){
-            case 1:
-                profissional_eventos();
-                break;
-            case 2:
-                profissional_relatorios();
-                break;
-            case 3:
-                stop = 1;
-                break;
-            default:
-                opcao_invalida();
-                break;
-        }
-    }    
-}            
 
 void desenvolvedor(void){
     system("clear||cls");
