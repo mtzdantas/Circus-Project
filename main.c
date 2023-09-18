@@ -47,13 +47,12 @@ int main(){
             case 6:
                 wprintf(L"VOLTE SEMPRE!");
                 stop = 0;
-                break;
+                return 0;
             default:
                 opcao_invalida();
                 break;
         }
     }
-    return 0;
 }
 
 void desenvolvedor(void){
