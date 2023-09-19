@@ -27,14 +27,15 @@ int verificar_profissional(){
         }
         else {
             wprintf(L"LOGIN OU SENHA INCORRETOS.\n");
-            wprintf(L"DIGITE '2' PARA SAIR E OUTRA TECLA PARA CONTINUAR.\n");
-            scanf("%d", &cancel);
+            wprintf(L"DIGITE '2' PARA SAIR OU ENTER PARA CONTINUAR.\n");
+            cancel = getchar();
             fflush(stdin);
             if (cancel == 2){
                 return 0;
             }
         }
-    }        
+    }   
+    return 0;     
 }
 
 void intro_profissional(void){
@@ -63,7 +64,8 @@ void intro_profissional(void){
                 opcao_invalida();
                 break;
         }
-    }    
+    }
+    return 0;    
 }            
 
 void profissional_eventos(void){
@@ -98,6 +100,7 @@ void profissional_eventos(void){
                 break;
         }
     }
+    return 0;
 }
 
 void eventos_listar(void){
@@ -107,6 +110,7 @@ void eventos_listar(void){
     wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
+    return 0;
 }
 
 void eventos_cadastrar(void){
@@ -117,6 +121,7 @@ void eventos_cadastrar(void){
     getchar();
     fflush(stdin);
     // Usar no cadastro a localização, horário, data, preço, vagas disponibilizadas e código de show.
+    return 0;
 }
 
 void eventos_cancelar(void){
@@ -126,6 +131,7 @@ void eventos_cancelar(void){
     wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
+    return 0;
 }
 
 void eventos_alterar(void){
@@ -135,6 +141,7 @@ void eventos_alterar(void){
     wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
+    return 0;
 }
 
 void profissional_relatorios(void){
@@ -144,4 +151,5 @@ void profissional_relatorios(void){
     wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
+    return 0;
 }

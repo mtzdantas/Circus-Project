@@ -38,6 +38,7 @@ void intro_ingressos(void){
                 break;
         }
     }
+    return 0;
 }
 
 void ingressos_comprar(void){
@@ -47,6 +48,7 @@ void ingressos_comprar(void){
     wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
+    return 0;
 }
 
 void ingressos_cancelar(void){
@@ -56,6 +58,7 @@ void ingressos_cancelar(void){
     wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
+    return 0;
 }
 
 void ingressos_carrinho(void){
@@ -65,6 +68,7 @@ void ingressos_carrinho(void){
     wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
+    return 0;
 }
 
 void ingressos_finalizar(void){
@@ -74,6 +78,7 @@ void ingressos_finalizar(void){
     wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar(); // diminuindo a quantidade de vagas e cadastrando nas vendas daquele evento. Pedir número/CPF/nome.
     fflush(stdin);
+    return 0;
 }
 
 void ingressos_comprados(void){
@@ -83,10 +88,12 @@ void ingressos_comprados(void){
     wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
+    return 0;
 }
 
 void ingressos_sair(void){
     // Aqui apaga o carrinho do cliente e volta para tela inicial.
+    return 0;
 }
 
 void opcao_invalida(void){
@@ -97,4 +104,5 @@ void opcao_invalida(void){
     getchar();
     fflush(stdin);
     system("clear||cls");
+    return 0;
 }

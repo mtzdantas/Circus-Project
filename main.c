@@ -53,6 +53,7 @@ int main(){
                 break;
         }
     }
+    return 0;
 }
 
 void desenvolvedor(void){
@@ -65,6 +66,7 @@ void desenvolvedor(void){
     wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
+    return 0;
 }
 
 void sobre(void){
@@ -78,4 +80,5 @@ void sobre(void){
     wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
+    return 0;
 }
