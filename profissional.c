@@ -65,7 +65,7 @@ void intro_profissional(void){
                 break;
         }
     }
-    return 0;    
+    return;    
 }            
 
 void profissional_eventos(void){
@@ -100,7 +100,7 @@ void profissional_eventos(void){
                 break;
         }
     }
-    return 0;
+    return;
 }
 
 void eventos_listar(void){
@@ -110,7 +110,7 @@ void eventos_listar(void){
     wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
-    return 0;
+    return;
 }
 
 void eventos_cadastrar(void){
@@ -121,7 +121,7 @@ void eventos_cadastrar(void){
     getchar();
     fflush(stdin);
     // Usar no cadastro a localização, horário, data, preço, vagas disponibilizadas e código de show.
-    return 0;
+    return;
 }
 
 void eventos_cancelar(void){
@@ -131,7 +131,7 @@ void eventos_cancelar(void){
     wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
-    return 0;
+    return;
 }
 
 void eventos_alterar(void){
@@ -141,7 +141,7 @@ void eventos_alterar(void){
     wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
-    return 0;
+    return;
 }
 
 void profissional_relatorios(void){
@@ -151,5 +151,5 @@ void profissional_relatorios(void){
     wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
-    return 0;
+    return;
 }

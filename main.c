@@ -66,7 +66,7 @@ void desenvolvedor(void){
     wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
-    return 0;
+    return;
 }
 
 void sobre(void){
@@ -80,5 +80,5 @@ void sobre(void){
     wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
-    return 0;
+    return;
 }
