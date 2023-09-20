@@ -28,7 +28,7 @@ int verificar_profissional(){
         else {
             wprintf(L"LOGIN OU SENHA INCORRETOS.\n");
             wprintf(L"DIGITE '2' PARA SAIR OU ENTER PARA CONTINUAR.\n");
-            cancel = getchar();
+            scanf("%d", &cancel);
             fflush(stdin);
             if (cancel == 2){
                 return 0;
