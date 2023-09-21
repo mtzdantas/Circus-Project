@@ -20,7 +20,7 @@ void sobre(void){
     wprintf(L"Bem-vindos ao nosso mágico mundo de diversão e maravilhas!\n");
     wprintf(L"Aqui, no nosso amado circo, estamos prontos para transportar\n");
     wprintf(L"você para um universo de encanto, risos e espetáculos incríveis.\n");
-    wprintf(L"Permita-nos apresentar o 'GRAN C-IRCO' - um lugar onde os sonhos\n");
+    wprintf(L"Permita-nos apresentar o 'GRAN C-IRCO' um lugar onde os sonhos\n");
     wprintf(L"ganham vida sob a grande lona e onde a imaginação não tem limites.\n");
     wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
