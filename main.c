@@ -10,6 +10,7 @@
 #include "ingressos.h"
 #include "profissional.h"
 #include "util.h"
+#include "prof_eventos.h"
 
 int main(){
     int option;
