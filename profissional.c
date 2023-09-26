@@ -45,8 +45,8 @@ void intro_profissional(void){
     while (stop == 0){
         system("clear||cls");
         wprintf(L"===============================\n        ~ GRAN C-IRCO ~\n     BEM VINDO FUNCIONÁRIO\n===============================\n");
-        wprintf(L"[1]Eventos\n"); // Usar no cadastro a localização, horário, data, preço
-        wprintf(L"[2]Relatórios\n"); // vagas disponibilizadas e código de show (para acessar informações facilmente).
+        wprintf(L"[1]Eventos\n"); 
+        wprintf(L"[2]Relatórios\n");
         wprintf(L"[3]Voltar\n");
         wprintf(L"DIGITE A OPÇÃO DESEJADA: ");
         scanf("%d", &option);

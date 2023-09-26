@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "ingressos.h"
+char cod1[5];
+char senha[21];
+char cpf[12];
 
 void intro_ingressos(void){
     int stop = 0;
@@ -44,7 +47,10 @@ void intro_ingressos(void){
 void ingressos_comprar(void){
     system("clear||cls");
     wprintf(L"===============================\n        ~ GRAN C-IRCO ~\n            COMPRAR\n===============================\n");
-    wprintf(L"COMPRAR\n"); // Aqui terá que informar o código do show que será consultado ao clicar enter.
+    wprintf(L"DIGITE O CÓDIGO DO ESPETÁCULO QUE VOCÊ DESEJA ADQUIRIR O INGRESSO:\n");
+    wprintf(L"PARA CONSULTAR A LISTA DE ESPETÁCULOS, DIGITE 'L'.\n");
+    fgets(cod1, 4, stdin);
+    fflush(stdin);
     wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
@@ -54,7 +60,10 @@ void ingressos_comprar(void){
 void ingressos_cancelar(void){
     system("clear||cls");
     wprintf(L"===============================\n        ~ GRAN C-IRCO ~\n            CANCELAR\n===============================\n");
-    wprintf(L"CANCELAR COMPRAS\n"); // Aqui terá que informar o código do show que será consultado ao clicar enter.
+    wprintf(L"DIGITE O CÓDIGO DO ESPETÁCULO QUE VOCÊ DESEJA CANCELAR O INGRESSO:\n");
+    wprintf(L"PARA CONSULTAR A LISTA DE ESPETÁCULOS, DIGITE 'L'.\n");
+    fgets(cod1, 4, stdin);
+    fflush(stdin);
     wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
@@ -64,7 +73,7 @@ void ingressos_cancelar(void){
 void ingressos_carrinho(void){
     system("clear||cls");
     wprintf(L"===============================\n        ~ GRAN C-IRCO ~\n            CARRINHO\n===============================\n");
-    wprintf(L"MEU CARRINHO\n"); // Aqui listará o que o cliente comprou até agora.
+    wprintf(L"LISTA DE ITENS DO CARRINHO\n"); // Aqui listará o que o cliente comprou até agora.
     wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
@@ -72,19 +81,40 @@ void ingressos_carrinho(void){
 }
 
 void ingressos_finalizar(void){
+    int op;
     system("clear||cls");
     wprintf(L"===============================\n        ~ GRAN C-IRCO ~\n           FINALIZAR\n===============================\n");
-    wprintf(L"FINALIZAR COMPRA\n"); // Aqui vai gerar um código para pagar e ao ser pago a compra é aprovada,
-    wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
-    getchar(); // diminuindo a quantidade de vagas e cadastrando nas vendas daquele evento. Pedir número/CPF/nome.
+    wprintf(L"INFORME SEU CPF (APENAS NÚMEROS):\n");
+    fgets(cpf, 12, stdin);
     fflush(stdin);
+    wprintf(L"INFORME UMA SENHA:\n");
+    fgets(senha, 21, stdin);
+    fflush(stdin);
+    wprintf(L"CPF: %s", cpf);
+    wprintf(L"SENHA: %s", senha);
+    wprintf(L"\nDIGITE 1 PARA FINALIZAR A COMPRA OU OUTRA TECLA PRA SAIR.\n");
+    scanf("%d", &op);
+    fflush(stdin);
+    if (op == 1){
+        // Diminuir a quantidade de vagas e cadastrar no relatório de vendas daquele evento.
+        wprintf(L"COMPRA FINALIZADA\n");
+        wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
+        getchar();
+        fflush(stdin);
+        }
     return;
 }
 
 void ingressos_comprados(void){
     system("clear||cls");
     wprintf(L"===============================\n        ~ GRAN C-IRCO ~\n       COMPRAS ANTERIORES\n===============================\n");
-    wprintf(L"COMPRAS REALIZADAS\n"); // Aqui mostrará ingressos comprados quando for informado nome completo/CPF.
+    wprintf(L"DIGITE SEU CPF:\n");
+    gets(cpf);
+    fflush(stdin);
+    wprintf(L"DIGITE SUA SENHA:\n");
+    gets(senha);
+    fflush(stdin);
+    wprintf(L"LISTA DE INGRESSOS COMPRADOS.\n");
     wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
