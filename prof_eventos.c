@@ -61,6 +61,11 @@ void eventos_alterar(void){
     int option;
     system("clear||cls");
     wprintf(L"===============================\n        ~ GRAN C-IRCO ~\n            ALTERAR\n===============================\n");
+    wprintf(L"DIGITE O CÓDIGO DO EVENTO QUE DESEJA ALTERAR: \n");
+    fgets(cod2, 4, stdin);
+    fflush(stdin);
+    system("clear||cls");
+    wprintf(L"===============================\n        ~ GRAN C-IRCO ~\n            ALTERAR\n===============================\n");
     wprintf(L"[1]Data\n"); wprintf(L"[2]Localização\n"); wprintf(L"[3]Horário\n");
     wprintf(L"[4]Preço\n"); wprintf(L"[5]Vagas\n"); wprintf(L"[6]Voltar\n");
     wprintf(L"DIGITE QUAL DADO DESEJA ALTERAR: ");
