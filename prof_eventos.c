@@ -7,9 +7,9 @@ int vagas;
 
 void eventos_listar(void){
     system("clear||cls");
-    wprintf(L"===============================\n        ~ GRAN C-IRCO ~\n          ESPETÁCULOS\n===============================\n");
-    wprintf(L"LISTA DE EVENTOS.\n");
-    wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
+    printf("===============================\n        ~ GRAN C-IRCO ~\n          ESPETACULOS\n===============================\n");
+    printf("LISTA DE EVENTOS.\n");
+    printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
     return;
@@ -17,27 +17,27 @@ void eventos_listar(void){
 
 void eventos_cadastrar(void){
     system("clear||cls");
-    wprintf(L"===============================\n        ~ GRAN C-IRCO ~\n           CADASTRAR\n===============================\n");
-    wprintf(L"DATA DO EVENTO:\n");
+    printf("===============================\n        ~ GRAN C-IRCO ~\n           CADASTRAR\n===============================\n");
+    printf("DATA DO EVENTO:\n");
     fgets(data, 10, stdin);
     fflush(stdin);
-    wprintf(L"LOCALIZAÇÃO:\n");
+    printf("LOCALIZACAO:\n");
     fgets(local, 50, stdin);
     fflush(stdin);
-    wprintf(L"HORÁRIO:\n");
+    printf("HORARIO:\n");
     fgets(horario, 5, stdin);
     fflush(stdin);
-    wprintf(L"PREÇO DO INGRESSO:\n");
+    printf("PRECO DO INGRESSO:\n");
     fgets(preco, 6, stdin);
     fflush(stdin);
-    wprintf(L"VAGAS DISPONIBILIZADAS:\n");
+    printf("VAGAS DISPONIBILIZADAS:\n");
     scanf("%d", &vagas);
     fflush(stdin);
-    wprintf(L"CÓDIGO DE ESPETÁCULO:\n");
+    printf("CODIGO DE ESPETACULO:\n");
     fgets(cod2, 4, stdin);
     fflush(stdin);
-    wprintf(L"CADASTRO REALIZADO COM SUCESSO!\n");
-    wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
+    printf("CADASTRO REALIZADO COM SUCESSO!\n");
+    printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
     return;
@@ -45,13 +45,13 @@ void eventos_cadastrar(void){
 
 void eventos_cancelar(void){
     system("clear||cls");
-    wprintf(L"===============================\n        ~ GRAN C-IRCO ~\n            CANCELAR\n===============================\n");
-    wprintf(L"DIGITE O CÓDIGO DO ESPETÁCULO QUE VOCÊ DESEJA CANCELAR:\n");
-    wprintf(L"PARA CONSULTAR A LISTA DE ESPETÁCULOS, DIGITE 'L'.\n");
+    printf("===============================\n        ~ GRAN C-IRCO ~\n            CANCELAR\n===============================\n");
+    printf("DIGITE O CODIGO DO ESPETACULO QUE VOCE DESEJA CANCELAR:\n");
+    printf("PARA CONSULTAR A LISTA DE ESPETACULOS, DIGITE 'L'.\n");
     fgets(cod2, 4, stdin);
     fflush(stdin);
-    wprintf(L"ESPETÁCULO CANCELADO COM SUCESSO!\n");
-    wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
+    printf("ESPETACULO CANCELADO COM SUCESSO!\n");
+    printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
     return;
@@ -60,66 +60,66 @@ void eventos_cancelar(void){
 void eventos_alterar(void){
     int option;
     system("clear||cls");
-    wprintf(L"===============================\n        ~ GRAN C-IRCO ~\n            ALTERAR\n===============================\n");
-    wprintf(L"DIGITE O CÓDIGO DO EVENTO QUE DESEJA ALTERAR: \n");
+    printf("===============================\n        ~ GRAN C-IRCO ~\n            ALTERAR\n===============================\n");
+    printf("DIGITE O CODIGO DO EVENTO QUE DESEJA ALTERAR: \n");
     fgets(cod2, 4, stdin);
     fflush(stdin);
     system("clear||cls");
-    wprintf(L"===============================\n        ~ GRAN C-IRCO ~\n            ALTERAR\n===============================\n");
-    wprintf(L"[1]Data\n"); wprintf(L"[2]Localização\n"); wprintf(L"[3]Horário\n");
-    wprintf(L"[4]Preço\n"); wprintf(L"[5]Vagas\n"); wprintf(L"[6]Voltar\n");
-    wprintf(L"DIGITE QUAL DADO DESEJA ALTERAR: ");
+    printf("===============================\n        ~ GRAN C-IRCO ~\n            ALTERAR\n===============================\n");
+    printf("[1]Data\n"); printf("[2]Localizacao\n"); printf("[3]Horario\n");
+    printf("[4]Preco\n"); printf("[5]Vagas\n"); printf("[6]Voltar\n");
+    printf("DIGITE QUAL DADO DESEJA ALTERAR: ");
     scanf("%d", &option);
         fflush(stdin);
         switch (option){
             case 1: 
-                wprintf(L"NOVA DATA DO EVENTO:\n");
+                printf("NOVA DATA DO EVENTO:\n");
                 fgets(data, 10, stdin);
                 fflush(stdin);
-                wprintf(L"DATA DO EVENTO ALTERADA.\n");
-                wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
+                printf("DATA DO EVENTO ALTERADA.\n");
+                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
                 getchar();
                 fflush(stdin);
                 break;
             case 2:
-                wprintf(L"NOVA LOCALIZAÇÃO:\n");
+                printf("NOVA LOCALIZACAO:\n");
                 fgets(local, 50, stdin);
                 fflush(stdin);
-                wprintf(L"LOCALIZAÇÃO ALTERADA.\n");
-                wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
+                printf("LOCALIZACAO ALTERADA.\n");
+                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
                 getchar();
                 fflush(stdin);
                 break;
             case 3:
-                wprintf(L"NOVO HORÁRIO:\n");
+                printf("NOVO HORARIO:\n");
                 fgets(horario, 5, stdin);
                 fflush(stdin);
-                wprintf(L"HORÁRIO ALTERADO.\n");
-                wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
+                printf("HORARIO ALTERADO.\n");
+                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
                 getchar();
                 fflush(stdin);
                 break;
             case 4:
-                wprintf(L"NOVO PREÇO DO INGRESSO:\n");
+                printf("NOVO PRECO DO INGRESSO:\n");
                 fgets(preco, 6, stdin);
                 fflush(stdin);
-                wprintf(L"PREÇO DO INGRESSO ALTERADO.\n");
-                wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
+                printf("PRECO DO INGRESSO ALTERADO.\n");
+                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
                 getchar();
                 fflush(stdin);
                 break;
             case 5:
-                wprintf(L"NOVA QUANTIDADE DE VAGAS:\n");
+                printf("NOVA QUANTIDADE DE VAGAS:\n");
                 scanf("%d", &vagas);
                 fflush(stdin);
-                wprintf(L"QUANTIDADE DE VAGAS ALTERADA.\n");
-                wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
+                printf("QUANTIDADE DE VAGAS ALTERADA.\n");
+                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
                 getchar();
                 fflush(stdin);
                 break;
             case 6:
                 return;
-                wprintf(L"\n- PRESSIONE ENTER PARA CONTINUAR.");
+                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
                 getchar();
                 fflush(stdin);
                 break; 
