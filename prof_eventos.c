@@ -2,11 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include "prof_eventos.h"
+#include "util.h"
 char data[11], local[51], horario[6], preco[7], cod2[5];
 int vagas;
 
 void eventos_listar(void){
-    system("clear||cls");
+    limpaTela();
     printf("===============================\n        ~ GRAN C-IRCO ~\n          ESPETACULOS\n===============================\n");
     printf("LISTA DE EVENTOS.\n");
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
@@ -16,7 +17,7 @@ void eventos_listar(void){
 }
 
 void eventos_cadastrar(void){
-    system("clear||cls");
+    limpaTela();
     printf("===============================\n        ~ GRAN C-IRCO ~\n           CADASTRAR\n===============================\n");
     printf("DATA DO EVENTO:\n");
     fgets(data, 10, stdin);
@@ -44,7 +45,7 @@ void eventos_cadastrar(void){
 }
 
 void eventos_cancelar(void){
-    system("clear||cls");
+    limpaTela();
     printf("===============================\n        ~ GRAN C-IRCO ~\n            CANCELAR\n===============================\n");
     printf("DIGITE O CODIGO DO ESPETACULO QUE VOCE DESEJA CANCELAR:\n");
     printf("PARA CONSULTAR A LISTA DE ESPETACULOS, DIGITE 'L'.\n");
@@ -59,12 +60,12 @@ void eventos_cancelar(void){
 
 void eventos_alterar(void){
     int option;
-    system("clear||cls");
+    limpaTela();
     printf("===============================\n        ~ GRAN C-IRCO ~\n            ALTERAR\n===============================\n");
     printf("DIGITE O CODIGO DO EVENTO QUE DESEJA ALTERAR: \n");
     fgets(cod2, 4, stdin);
     fflush(stdin);
-    system("clear||cls");
+    limpaTela();
     printf("===============================\n        ~ GRAN C-IRCO ~\n            ALTERAR\n===============================\n");
     printf("[1]Data\n"); printf("[2]Localizacao\n"); printf("[3]Horario\n");
     printf("[4]Preco\n"); printf("[5]Vagas\n"); printf("[6]Voltar\n");

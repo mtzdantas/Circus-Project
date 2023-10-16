@@ -9,6 +9,7 @@
 #include "ingressos.h"
 #include "profissional.h"
 #include "prof_eventos.h"
+#include "util.h"
 
 void sobre(void);
 
@@ -16,7 +17,7 @@ int main(){
     int option;
     int stop = 1;
     while (stop == 1){
-        system("clear||cls");
+        limpaTela();
         printf("===============================\n        ~ GRAN C-IRCO ~\n    O VERDADEIRO ESPETACULO\n===============================\n");
         printf("[1]Atracoes\n"); printf("[2]Ingressos\n"); printf("[3]Buscar Reserva\n");
         printf("[4]Sobre Nos\n"); printf("[5]Administracao\n"); printf("[6]Sair\n");
@@ -54,7 +55,7 @@ int main(){
 }
 
 void sobre(void){
-    system("clear||cls");
+    limpaTela();
     printf("===============================\n        ~ GRAN C-IRCO ~\n           SOBRE NOS\n===============================\n");
     printf("Bem-vindos ao nosso magico mundo de diversao e maravilhas!\n");
     printf("Aqui, no nosso amado circo, estamos prontos para transportar\n");
