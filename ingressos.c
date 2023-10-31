@@ -1,17 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "ingressos.h"
 #include "verifica.h"
-#include "util.h"
 char cod1[5];
-char senha[21];
 char cpf[12];
+char senha[21];
+char carrinho[20][5];
 
 void intro_ingressos(void){
     int stop = 0;
     int option;
     while (stop == 0){
-        limpaTela();
+        system("clear||cls");
         printf("===============================\n        ~ GRAN C-IRCO ~\n           INGRESSOS\n===============================\n");
         printf("[1]Reservar\n"); printf("[2]Cancelar\n"); printf("[3]Meu Carrinho\n");
         printf("[4]Finalizar\n"); printf("[5]Voltar\n");
@@ -44,7 +45,7 @@ void intro_ingressos(void){
 }
 
 void ingressos_comprar(void){
-    limpaTela();
+    system("clear||cls");
     printf("===============================\n        ~ GRAN C-IRCO ~\n            RESERVA\n===============================\n");
     printf("DIGITE O CODIGO DO ESPETACULO QUE VOCE DESEJA RESERVAR O INGRESSO:\n");
     printf("PARA CONSULTAR A LISTA DE ESPETACULOS, DIGITE 'L'.\n");
@@ -57,7 +58,7 @@ void ingressos_comprar(void){
 }
 
 void ingressos_cancelar(void){
-    limpaTela();
+    system("clear||cls");
     printf("===============================\n        ~ GRAN C-IRCO ~\n            CANCELAR\n===============================\n");
     printf("DIGITE O CODIGO DO ESPETACULO QUE VOCE DESEJA CANCELAR O INGRESSO:\n");
     printf("PARA CONSULTAR A LISTA DE ESPETACULOS, DIGITE 'L'.\n");
@@ -70,7 +71,7 @@ void ingressos_cancelar(void){
 }
 
 void ingressos_carrinho(void){
-    limpaTela();
+    system("clear||cls");
     printf("===============================\n        ~ GRAN C-IRCO ~\n            CARRINHO\n===============================\n");
     printf("LISTA DE ITENS DO CARRINHO\n"); // Aqui listará o que o cliente comprou até agora.
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
@@ -82,10 +83,13 @@ void ingressos_carrinho(void){
 void ingressos_finalizar(void){
     int op;
     do {
-        limpaTela();
+        system("clear||cls");
         printf("===============================\n        ~ GRAN C-IRCO ~\n           FINALIZAR\n===============================\n");
         printf("INFORME SEU CPF (APENAS NUMEROS):\n");
         fgets(cpf, 12, stdin);
+        fflush(stdin);
+        printf("INFORME SUA SENHA (MAXIMO: 20 CARACTERES)");
+        fgets(senha, 20, stdin);
         fflush(stdin);
     } while (validaCPF(cpf) == 0);
     printf("CPF: %s", cpf);
@@ -94,7 +98,7 @@ void ingressos_finalizar(void){
     fflush(stdin);
     if (op == 1){
         // Diminuir a quantidade de vagas e cadastrar no relatório de vendas daquele evento.
-        printf("\nRESERVA FINALIZADA!\nOBS: PARA VALIDAR SEU INGRESSO, BASTA REALIZAR O PAGAMENTO NA HORA DO SHOW\nE APRESENTAR O CPF REGISTRADO NA COMPRA.\n");
+        printf("\nRESERVA FINALIZADA!\nOBS: PARA VALIDAR SEU INGRESSO, BASTA REALIZAR O PAGAMENTO NA HORA DO SHOW\n");
         printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
         getchar();
         fflush(stdin);
@@ -104,10 +108,10 @@ void ingressos_finalizar(void){
 
 void ingressos_comprados(void){
     do {
-        limpaTela();
+        system("clear||cls");
         printf("===============================\n        ~ GRAN C-IRCO ~\n      RESERVAS CONCLUIDAS\n===============================\n");
         printf("DIGITE SEU CPF:\n");
-        gets(cpf);
+        fgets(cpf, 12, stdin);
         fflush(stdin);
     } while (validaCPF(cpf) == 0);
     // Fazer outra verificação se existe esse CPF cadastrado.
@@ -124,12 +128,12 @@ void ingressos_sair(void){
 }
 
 void opcao_invalida(void){
-    limpaTela();
+    system("clear||cls");
     printf("===============================\n        ~ GRAN C-IRCO ~\n        ERRO ENCONTRADO\n===============================\n");
     printf("POR FAVOR, SELECIONE UMA OPCAO VALIDA.\n");
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
-    limpaTela();
+    system("clear||cls");
     return;
 }
