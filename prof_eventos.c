@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "prof_eventos.h"
 char data[12], local[51], horario[6];
 int vagas = 0, preco = 0, cod2, cod, list = 0;
@@ -17,10 +18,11 @@ void eventos_listar(void){
         fflush(stdin);
     } else {
     Eventos cod2;
-    
     while (fread(&cod2, sizeof(Eventos), 1, ev) == 1) {
-        printf("EVENTO DE CODIGO: %d\nDATA: %s\nLOCAL: %sHORARIO: %s\nPRECO: %d\nVAGAS DISPONIVEIS: %d\n", cod2.showcod, cod2.data, cod2.local, cod2.horario, cod2.preco, cod2.vagas);
-        printf("===============================\n");
+        if (cod2.status != 'x') {
+            printf("EVENTO DE CODIGO: %d\nDATA: %sLOCAL: %sHORARIO: %s\nPRECO: %d\nVAGAS DISPONIVEIS: %d\n", cod2.showcod, cod2.data, cod2.local, cod2.horario, cod2.preco, cod2.vagas);
+            printf("===============================\n");  
+        }
     }
     fclose(ev);
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
@@ -38,15 +40,16 @@ void eventos_cadastrar(void){
     fflush(stdin);
     cod2 = cod;
     Eventos cod2;
+    cod2.status = 'v';
     cod2.showcod = cod;
     printf("DATA DO EVENTO:\n");
     fgets(data, 12, stdin);
     fflush(stdin);
-    strncpy(cod2.data, data, 10);
+    strncpy(cod2.data, data, 12);
     printf("LOCALIZACAO:\n");
-    fgets(local, 51, stdin);
+    fgets(local, 61, stdin);
     fflush(stdin);
-    strncpy(cod2.local, local, 60);
+    strncpy(cod2.local, local, 61);
     printf("HORARIO:\n");
     fgets(horario, 6, stdin);
     fflush(stdin);
@@ -59,7 +62,15 @@ void eventos_cadastrar(void){
     scanf("%d", &vagas);
     fflush(stdin);
     cod2.vagas = vagas;
-    cadastra_evento();
+    FILE *ev; 
+    ev = fopen("eventos.dat", "ab");
+    if (ev == NULL) {
+        printf("ERRO AO ABRIR O ARQUIVO.\n");
+    } else {
+        fwrite(&cod2, sizeof(Eventos), 1, ev);
+        printf("CADASTRO REALIZADO COM SUCESSO!\n");
+    }
+    fclose(ev);
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
@@ -69,17 +80,35 @@ void eventos_cadastrar(void){
 void eventos_cancelar(void){
     system("clear||cls");
     do {
-        if (list == 1){
+        if (cod2 == 1){
             eventos_listar();
             system("clear||cls");
         }
         printf("===============================\n        ~ GRAN C-IRCO ~\n            CANCELAR\n===============================\n");
         printf("DIGITE O CODIGO DO ESPETACULO QUE VOCE DESEJA CANCELAR:\n");
         printf("PARA CONSULTAR A LISTA DE ESPETACULOS, DIGITE '1'.\n");
-        scanf("%d", &list);
+        scanf("%d", &cod2);
         fflush(stdin);
-    } while (list == 1);
-    printf("ESPETACULO CANCELADO COM SUCESSO!\n");
+    } while (cod2 == 1);
+    FILE *ev; 
+    ev = fopen("eventos.dat", "r+b");
+    if (ev == NULL) {
+        printf("ERRO AO ABRIR O ARQUIVO.\n");
+    } else {
+        cod = cod2;
+        Eventos cod2;
+        off_t tamanho = sizeof(Eventos);
+        while(fread(&cod2, sizeof(Eventos), 1, ev)) {
+            if (cod == cod2.showcod) {
+                cod2.status = 'x';
+                fseek(ev, -tamanho, SEEK_CUR);
+                fwrite(&cod2, sizeof(Eventos), 1, ev);
+                break;
+            };
+        }
+        fclose(ev);
+        printf("ESPETACULO CANCELADO COM SUCESSO!\n");  
+        }
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
@@ -163,18 +192,5 @@ void eventos_alterar(void){
                 opcao_invalida();
                 break;
         }
-    return;
-}
-
-void cadastra_evento(void){
-    FILE *ev; 
-    ev = fopen("eventos.dat", "ab");
-    if (ev == NULL) {
-        printf("ERRO AO ABRIR O ARQUIVO.\n");
-    } else {
-        fwrite(&cod2, sizeof(Eventos), 1, ev);
-        printf("CADASTRO REALIZADO COM SUCESSO!\n");
-    }
-    fclose(ev);
     return;
 }
