@@ -3,6 +3,9 @@
 // Projeto Sistema de Gestão de um Circo
 // Developed by Mateus Dantas de Oliveira
 
+// PARA ACESSAR O MÓDULO DE ADMINISTRAÇÃO:
+// LOGIN: circo E SENHA: circo123
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
