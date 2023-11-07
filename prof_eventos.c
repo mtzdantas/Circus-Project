@@ -98,16 +98,21 @@ void eventos_cancelar(void){
         cod = cod2;
         Eventos cod2;
         off_t tamanho = sizeof(Eventos);
+        int a = 1;
         while(fread(&cod2, sizeof(Eventos), 1, ev)) {
             if (cod == cod2.showcod) {
+                a++;
                 cod2.status = 'x';
                 fseek(ev, -tamanho, SEEK_CUR);
                 fwrite(&cod2, sizeof(Eventos), 1, ev);
+                printf("ESPETACULO CANCELADO COM SUCESSO!\n");  
                 break;
             };
         }
+        if (a == 1) {
+            printf("NAO TEM NENHUM ESPETACULO COM ESSE CODIGO.");
+        }
         fclose(ev);
-        printf("ESPETACULO CANCELADO COM SUCESSO!\n");  
         }
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
