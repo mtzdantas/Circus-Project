@@ -3,6 +3,7 @@
 #include <string.h>
 #include "profissional.h"
 #include "prof_eventos.h"
+#include "ingressos.h"
 
 int verificar_profissional(){
     char entlogin[] = "circo", entsenha[] = "circo123";
@@ -107,9 +108,28 @@ void profissional_eventos(void){
 void profissional_relatorios(void){
     system("clear||cls");
     printf("===============================\n        ~ GRAN C-IRCO ~\n           RELATORIO\n===============================\n");
-    printf("GERANDO RELATORIOS...\n"); // Informacões de quantas vendas foram feitas, e quanto foi arrecatado.
+    FILE *ev; 
+    ev = fopen("clientes.dat", "rb");
+    if (ev == NULL) {
+        printf("NAO EXISTE CLIENTES CADASTRADOS.\n");
+        printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+        getchar();
+        fflush(stdin);
+    } else {
+    Cliente rel;
+    while (fread(&rel, sizeof(Cliente), 1, ev) == 1) {
+        printf("CPF CLIENTE: %s\nSENHA: %s\n", rel.cpf, rel.senha);
+        printf("CODIGO DA COMPRA(S):");
+        for (int i = 0; i <= 20; i++) {
+            printf("%d", rel.compras[i]);
+        }
+        printf("===============================\n");  
+    }
+    fclose(ev);
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
     return;
+    // Informacões de quantas vendas foram feitas, e quanto foi arrecatado... 
+    }
 }

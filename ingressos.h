@@ -6,3 +6,9 @@ void ingressos_finalizar(void);
 void ingressos_comprados(void);
 void ingressos_sair(void);
 void opcao_invalida(void);
+
+typedef struct Cliente {
+    char senha[21];
+    char cpf[12];
+    int compras[20];
+} Cliente;

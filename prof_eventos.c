@@ -6,7 +6,7 @@
 #include "verifica.h"
 
 char local[61], horario[6], preco[4], vagas[5];
-int cod2, cod, list = 0, dia, mes, ano;
+int cod2 = 0, cod, list = 0, dia, mes, ano;
 
 void eventos_listar(void){
     system("clear||cls");
@@ -22,7 +22,7 @@ void eventos_listar(void){
     Eventos cod2;
     while (fread(&cod2, sizeof(Eventos), 1, ev) == 1) {
         if (cod2.status != 'x') {
-            printf("EVENTO DE CODIGO: %d\nDATA: %d/%d/%d\nLOCAL: %s\nHORARIO: %s\nPRECO: %d\nVAGAS DISPONIVEIS: %d\n", cod2.showcod, cod2.dia, cod2.mes, cod2.ano, cod2.local, cod2.horario, cod2.preco, cod2.vagas);
+            printf("EVENTO DE CODIGO: %d\nDATA: %d/%d/%d\nLOCAL: %s\nHORARIO: %s\nPRECO: R$%d REAIS\nVAGAS DISPONIVEIS: %d\n", cod2.showcod, cod2.dia, cod2.mes, cod2.ano, cod2.local, cod2.horario, cod2.preco, cod2.vagas);
             printf("===============================\n");  
         }
     }

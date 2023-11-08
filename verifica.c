@@ -23,7 +23,7 @@ int validaCPF(char *cpf)
     // se todos os caracteres são dígitos
     for (int i = 0; i < 11; i++) {
         if (cpf[i] < '0' || cpf[i] > '9') {
-            printf("\nAPENAS NÚMEROS POR FAVOR!\n");
+            printf("\nAPENAS NUMEROS POR FAVOR!\n");
             printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
             getchar();
             return 0;
