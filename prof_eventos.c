@@ -3,8 +3,10 @@
 #include <string.h>
 #include <unistd.h>
 #include "prof_eventos.h"
-char data[12], local[51], horario[6];
-int vagas = 0, preco = 0, cod2, cod, list = 0;
+#include "verifica.h"
+
+char local[61], horario[6], preco[4], vagas[5];
+int cod2, cod, list = 0, dia, mes, ano;
 
 void eventos_listar(void){
     system("clear||cls");
@@ -20,7 +22,7 @@ void eventos_listar(void){
     Eventos cod2;
     while (fread(&cod2, sizeof(Eventos), 1, ev) == 1) {
         if (cod2.status != 'x') {
-            printf("EVENTO DE CODIGO: %d\nDATA: %sLOCAL: %sHORARIO: %s\nPRECO: %d\nVAGAS DISPONIVEIS: %d\n", cod2.showcod, cod2.data, cod2.local, cod2.horario, cod2.preco, cod2.vagas);
+            printf("EVENTO DE CODIGO: %d\nDATA: %d/%d/%d\nLOCAL: %s\nHORARIO: %s\nPRECO: %d\nVAGAS DISPONIVEIS: %d\n", cod2.showcod, cod2.dia, cod2.mes, cod2.ano, cod2.local, cod2.horario, cod2.preco, cod2.vagas);
             printf("===============================\n");  
         }
     }
@@ -35,33 +37,47 @@ void eventos_listar(void){
 void eventos_cadastrar(void){
     system("clear||cls");
     printf("===============================\n        ~ GRAN C-IRCO ~\n           CADASTRAR\n===============================\n");
-    printf("CODIGO DE ESPETACULO:\n");
-    scanf("%d", &cod);
-    fflush(stdin);
+    do {
+        printf("CODIGO DE ESPETACULO (3 DIGITOS):\n");
+        scanf("%d", &cod);
+        fflush(stdin);
+    } while (!validaCod(cod));
     cod2 = cod;
     Eventos cod2;
     cod2.status = 'v';
     cod2.showcod = cod;
-    printf("DATA DO EVENTO:\n");
-    fgets(data, 12, stdin);
-    fflush(stdin);
-    strncpy(cod2.data, data, 12);
-    printf("LOCALIZACAO:\n");
-    fgets(local, 61, stdin);
-    fflush(stdin);
+    do {
+        printf("DATA DO EVENTO (DD/MM/AAAA):\n");
+        scanf("%d/%d/%d", &dia, &mes, &ano);
+        fflush(stdin);
+    } while (!validaData(dia, mes, ano));
+    cod2.dia = dia; cod2.mes = mes; cod2.ano = ano;
+    do {
+        printf("LOCALIZACAO:\n");
+        fgets(local, sizeof(local), stdin);
+        fflush(stdin);
+    } while (!validaLocal(local));
+    local[strcspn(local, "\n")] = '\0';
     strncpy(cod2.local, local, 61);
-    printf("HORARIO:\n");
-    fgets(horario, 6, stdin);
-    fflush(stdin);
+    do {
+        printf("HORARIO (HH:MM):\n");
+        fgets(horario, sizeof(horario), stdin);
+        fflush(stdin);
+    } while (!validaHorario(horario));
+    horario[strcspn(horario, "\n")] = '\0';
     strncpy(cod2.horario, horario, 6);
-    printf("PRECO DO INGRESSO:\n");
-    scanf("%d", &preco);
-    fflush(stdin);
-    cod2.preco = preco;
-    printf("VAGAS DISPONIBILIZADAS:\n");
-    scanf("%d", &vagas);
-    fflush(stdin);
-    cod2.vagas = vagas;
+    do {
+        printf("PRECO DO INGRESSO:\n");
+        fgets(preco, sizeof(preco), stdin);
+        fflush(stdin);
+    } while (!validaNumeros(preco));
+    cod2.preco = atoi(preco);
+    do {
+        printf("VAGAS DISPONIBILIZADAS:\n");
+        fgets(vagas, sizeof(vagas), stdin);
+        fflush(stdin);
+    } while (!validaNumeros(vagas));
+    cod2.vagas = atoi(vagas);
     FILE *ev; 
     ev = fopen("eventos.dat", "ab");
     if (ev == NULL) {
@@ -144,7 +160,7 @@ void eventos_alterar(void){
         switch (option){
             case 1: 
                 printf("NOVA DATA DO EVENTO:\n");
-                fgets(data, 10, stdin);
+                scanf("%d/%d/%d", &dia, &mes, &ano);
                 fflush(stdin);
                 printf("DATA DO EVENTO ALTERADA.\n");
                 printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
@@ -153,7 +169,7 @@ void eventos_alterar(void){
                 break;
             case 2:
                 printf("NOVA LOCALIZACAO:\n");
-                fgets(local, 50, stdin);
+                fgets(local, sizeof(local), stdin);
                 fflush(stdin);
                 printf("LOCALIZACAO ALTERADA.\n");
                 printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
@@ -162,7 +178,7 @@ void eventos_alterar(void){
                 break;
             case 3:
                 printf("NOVO HORARIO:\n");
-                fgets(horario, 5, stdin);
+                fgets(horario, sizeof(horario), stdin);
                 fflush(stdin);
                 printf("HORARIO ALTERADO.\n");
                 printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
@@ -171,7 +187,7 @@ void eventos_alterar(void){
                 break;
             case 4:
                 printf("NOVO PRECO DO INGRESSO:\n");
-                scanf("%d", &preco);
+                fgets(preco, sizeof(preco), stdin);
                 fflush(stdin);
                 printf("PRECO DO INGRESSO ALTERADO.\n");
                 printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
@@ -180,7 +196,7 @@ void eventos_alterar(void){
                 break;
             case 5:
                 printf("NOVA QUANTIDADE DE VAGAS:\n");
-                scanf("%d", &vagas);
+                fgets(vagas, sizeof(vagas), stdin);
                 fflush(stdin);
                 printf("QUANTIDADE DE VAGAS ALTERADA.\n");
                 printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
