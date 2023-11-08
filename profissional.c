@@ -4,6 +4,7 @@
 #include "profissional.h"
 #include "prof_eventos.h"
 #include "ingressos.h"
+#include "verifica.h"
 
 int verificar_profissional(){
     char entlogin[] = "circo", entsenha[] = "circo123";
@@ -119,9 +120,11 @@ void profissional_relatorios(void){
     Cliente rel;
     while (fread(&rel, sizeof(Cliente), 1, ev) == 1) {
         printf("CPF CLIENTE: %s\nSENHA: %s\n", rel.cpf, rel.senha);
-        printf("CODIGO DA COMPRA(S):");
+        printf("CODIGO(S) DA(S) COMPRA(S):");
         for (int i = 0; i <= 20; i++) {
-            printf("%d", rel.compras[i]);
+            if (validaCod(rel.compras[i])){
+                printf("%d\n", rel.compras[i]);
+            }
         }
         printf("===============================\n");  
     }

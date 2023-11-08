@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include "prof_eventos.h"
 #include "verifica.h"
+#include "ingressos.h"
 
 char local[61], horario[6], preco[4], vagas[5];
 int cod2 = 0, cod, list = 0, dia, mes, ano;

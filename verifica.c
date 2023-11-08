@@ -110,7 +110,6 @@ bool validaCod(int codigo) {
         }
         fclose(ev);
     } else {
-        printf("\nO CODIGO DEVE POSSUIR 3 DIGITOS.\n");
         return false;
     }
     return true;

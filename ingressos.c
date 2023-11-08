@@ -162,7 +162,7 @@ void ingressos_finalizar(void){
         fgets(cpf, sizeof(cpf), stdin);
         fflush(stdin);
     } while (validaCPF(cpf) == 0);
-    printf("INFORME SUA SENHA (ATE 20 CARACTERES)");
+    printf("INFORME SUA SENHA (ATE 20 CARACTERES):\n");
     fgets(senha, sizeof(senha), stdin);
     fflush(stdin);
     printf("CPF: %s", cpf);
@@ -173,8 +173,13 @@ void ingressos_finalizar(void){
     if (op == 1){
         // Diminuir a quantidade de vagas e cadastrar no relatório de vendas daquele evento.
         Cliente cad;
-        for (int i = 0; i <= 20; i++) {
-            cad.compras[i] = carrinho[i];          
+        cpf[strcspn(cpf, "\n")] = '\0'; senha[strcspn(senha, "\n")] = '\0';
+        strncpy(cad.cpf, cpf, sizeof(cpf)); strncpy(cad.senha, senha, sizeof(cpf));
+        for (int i = 0; i <= x; i++) {
+            if (validaCod(carrinho[i])){
+                cad.compras[i] = carrinho[i];
+                carrinho[i] = 0; 
+            }         
         }
         FILE *ev; 
         ev = fopen("clientes.dat", "ab");
@@ -182,7 +187,7 @@ void ingressos_finalizar(void){
             printf("ERRO AO ABRIR O ARQUIVO.\n");
         } else {
             fwrite(&cad, sizeof(Cliente), 1, ev);
-            printf("CADASTRO REALIZADO COM SUCESSO!\n");
+            printf("\nCADASTRO REALIZADO COM SUCESSO!");
         }
         fclose(ev);
         printf("\nRESERVA FINALIZADA!\nOBS: PARA VALIDAR SEU INGRESSO, BASTA REALIZAR O PAGAMENTO NA HORA DO SHOW\n");
@@ -210,7 +215,9 @@ void ingressos_comprados(void){
 }
 
 void ingressos_sair(void){
-    // Aqui apaga o carrinho do cliente e volta para tela inicial.
+    for (int i = 0; i <= x; i++) {
+        carrinho[i] = 0; 
+    }         
     return;
 }
 
