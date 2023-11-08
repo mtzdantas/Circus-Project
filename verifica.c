@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
+#include "verifica.h"
+#include "prof_eventos.h"
+#include <ctype.h>
 
 // REFERÊNCIA DA FUNÇÃO DE VALIDAR CPF A SEGUIR:
 // https://github.com/Mumber162/StyleC-Hair/blob/main/util.c
@@ -64,4 +68,97 @@ int validaCPF(char *cpf)
 
     // até aqui, o CPF é válido
     return 1;
+}
+
+// REFERÊNCIA DA FUNÇÃO DE VALIDAR DATA A SEGUIR:
+// https://chat.openai.com/share/f6678427-2578-4f74-8ff0-ceeebff0ff73
+// PS: FOI FEITA ALGUMAS ALTERAÇÕES.
+
+bool validaData(int dia, int mes, int ano) {
+    if (ano < 1000 || ano > 9999 || mes < 1 || mes > 12) {
+        printf("\nDATA INVALIDA, TENTE NOVAMENTE.\n");
+        return false;
+    }
+
+    int diasNoMes[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    if ((ano % 400 == 0) || (ano % 100 != 0 && ano % 4 == 0)) {
+        diasNoMes[2] = 29;
+    }
+
+    if (dia < 1 || dia > diasNoMes[mes]) {
+        printf("\nDATA INVALIDA, TENTE NOVAMENTE.\n");
+        return false;
+    }
+
+    return true;
+}
+
+bool validaCod(int codigo) {
+    if(codigo >= 100 && codigo <= 999){
+        FILE *ev; 
+        ev = fopen("eventos.dat", "r+b");
+        if (ev == NULL) {
+            return true;
+        }
+        Eventos lido;
+        while (fread(&lido, sizeof(Eventos), 1, ev) == 1) {
+            if (lido.showcod == codigo) {
+                return false;
+                fclose(ev);
+            }
+        }
+        fclose(ev);
+    } else {
+        printf("\nO CODIGO DEVE POSSUIR 3 DIGITOS.\n");
+        return false;
+    }
+    return true;
+}
+
+bool validaLocal(char local[]) {
+    local[strcspn(local, "\n")] = '\0';
+    if (strlen(local) > 20) {
+        return true;
+    } else {
+        printf("\nADICIONE MAIS INFORMAÇOES.\n");
+        return false;
+    }
+}
+
+// REFERÊNCIA DA FUNÇÃO DE VALIDAR HORÁRIO A SEGUIR:
+// CHAT GPT
+// PS: FOI FEITA ALGUMAS ALTERAÇÕES.
+
+bool validaHorario(const char *horario) {
+    char horarioCopia[6];
+    strcpy(horarioCopia, horario);
+    if (strlen(horarioCopia) != 5) {
+        printf("\nERRO ENCONTRADO, DIGITE NOVAMENTE.");
+        return false;
+    }
+    int horas = atoi(strtok(horarioCopia, ":"));
+    if (horas < 0 || horas > 23) {
+        printf("\nERRO ENCONTRADO, DIGITE NOVAMENTE.");
+        return false;
+    }
+    int minutos = atoi(strtok(NULL, ":"));
+    if (minutos < 0 || minutos > 59) {
+        printf("\nERRO ENCONTRADO, DIGITE NOVAMENTE.");
+        return false;
+    }
+    return true;
+}
+
+bool validaNumeros(char input[]) {
+    input[strcspn(input, "\n")] = '\0';
+    int i = 0;
+    while (input[i] != '\0') {
+        if (!isdigit(input[i])) {
+            printf("\nERRO ENCONTRADO, DIGITE NOVAMENTE.");
+            return false;
+        }
+        i++;
+    }
+    return true;
 }
