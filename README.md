@@ -1,8 +1,6 @@
-# C-ircus Project 
- Projeto de gestão para um circo feito em Linguagem C durante a disciplina DCT1106 - Programação do curso de Sistemas de Informação para fins avaliativos.
+<h1>C-ircus Project</h1>
 
-
- Developed by Mateus Dantas.
-
-<strong>Passos para execução<strong>
-gcc -Wall *.c -o main.exe
+<h3>Passos para execução</h3>
+<strong>Primeiro Passo:</strong> digite esse comando no seu terminal: gcc -Wall *.c -o main.exe<br>
+<strong>Segundo Passo:</strong> execute o arquivo executável com o comando a seguir: ./main.exe<br><br>
+<strong>INFORMAÇÕES IMPORTANTES:</strong> <br>Login do Menu Administrção: "circo"<br>Senha do Menu Administração: "circo123"
