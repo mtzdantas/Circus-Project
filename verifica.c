@@ -161,3 +161,10 @@ bool validaNumeros(char input[]) {
     }
     return true;
 }
+
+bool validaIngresso(int codIng) {
+    if (codIng >= 100 && codIng <= 999) {    
+        return true;
+    }
+    return false;
+}

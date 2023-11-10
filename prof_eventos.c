@@ -138,7 +138,6 @@ void eventos_cancelar(void){
 }
 
 void eventos_alterar(void){
-    int option;
     system("clear||cls");
     do {
         if (list == 1) {
@@ -153,66 +152,43 @@ void eventos_alterar(void){
     } while (list == 1);
     system("clear||cls");
     printf("===============================\n        ~ GRAN C-IRCO ~\n            ALTERAR\n===============================\n");
-    printf("[1]Data\n"); printf("[2]Localizacao\n"); printf("[3]Horario\n");
-    printf("[4]Preco\n"); printf("[5]Vagas\n"); printf("[6]Voltar\n");
-    printf("DIGITE QUAL DADO DESEJA ALTERAR: ");
-    scanf("%d", &option);
-        fflush(stdin);
-        switch (option){
-            case 1: 
-                printf("NOVA DATA DO EVENTO:\n");
-                scanf("%d/%d/%d", &dia, &mes, &ano);
-                fflush(stdin);
-                printf("DATA DO EVENTO ALTERADA.\n");
-                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-                getchar();
-                fflush(stdin);
-                break;
-            case 2:
-                printf("NOVA LOCALIZACAO:\n");
-                fgets(local, sizeof(local), stdin);
-                fflush(stdin);
-                printf("LOCALIZACAO ALTERADA.\n");
-                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-                getchar();
-                fflush(stdin);
-                break;
-            case 3:
-                printf("NOVO HORARIO:\n");
-                fgets(horario, sizeof(horario), stdin);
-                fflush(stdin);
-                printf("HORARIO ALTERADO.\n");
-                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-                getchar();
-                fflush(stdin);
-                break;
-            case 4:
-                printf("NOVO PRECO DO INGRESSO:\n");
-                fgets(preco, sizeof(preco), stdin);
-                fflush(stdin);
-                printf("PRECO DO INGRESSO ALTERADO.\n");
-                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-                getchar();
-                fflush(stdin);
-                break;
-            case 5:
-                printf("NOVA QUANTIDADE DE VAGAS:\n");
-                fgets(vagas, sizeof(vagas), stdin);
-                fflush(stdin);
-                printf("QUANTIDADE DE VAGAS ALTERADA.\n");
-                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-                getchar();
-                fflush(stdin);
-                break;
-            case 6:
-                return;
-                printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-                getchar();
-                fflush(stdin);
-                break; 
-            default:
-                opcao_invalida();
-                break;
-        }
+    printf("NOVA DATA DO EVENTO:\n");
+    scanf("%d/%d/%d", &dia, &mes, &ano);
+    fflush(stdin);
+    printf("DATA DO EVENTO ALTERADA.\n");
+    printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+    getchar();
+    fflush(stdin);
+    printf("NOVA LOCALIZACAO:\n");
+    fgets(local, sizeof(local), stdin);
+    fflush(stdin);
+    printf("LOCALIZACAO ALTERADA.\n");
+    printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+    getchar();
+    fflush(stdin);
+    printf("NOVO HORARIO:\n");
+    fgets(horario, sizeof(horario), stdin);
+    fflush(stdin);
+    printf("HORARIO ALTERADO.\n");
+    printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+    getchar();
+    fflush(stdin);
+    printf("NOVO PRECO DO INGRESSO:\n");
+    fgets(preco, sizeof(preco), stdin);
+    fflush(stdin);
+    printf("PRECO DO INGRESSO ALTERADO.\n");
+    printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+    getchar();
+    fflush(stdin);
+    printf("NOVA QUANTIDADE DE VAGAS:\n");
+    fgets(vagas, sizeof(vagas), stdin);
+    fflush(stdin);
+    printf("QUANTIDADE DE VAGAS ALTERADA.\n");
+    printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+    getchar();
+    fflush(stdin);
+    printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+    getchar();
+    fflush(stdin);
     return;
 }

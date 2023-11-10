@@ -10,6 +10,9 @@ char cpf[12], senha[21];
 void intro_ingressos(void){
     int stop = 0;
     int option;
+    for (int i = 0; i <= 21; i++) {
+        carrinho[i] = 0; 
+    } 
     while (stop == 0){
         system("clear||cls");
         printf("===============================\n        ~ GRAN C-IRCO ~\n           INGRESSOS\n===============================\n");
@@ -30,6 +33,7 @@ void intro_ingressos(void){
                 break;
             case 4:
                 ingressos_finalizar();
+                stop = 1;
                 break;
             case 5:
                 ingressos_sair();
@@ -107,9 +111,9 @@ void ingressos_cancelar(void){
         int a = 1;
         while(fread(&cod3, sizeof(Eventos), 1, ev)) {
             if (cod1 == cod3.showcod) {
-                a++;
-                for (int i = 0; i <= 20; i++) {
+                for (int i = 0; i <= 21; i++) {
                     if (cod1 == carrinho[i]) {
+                        a++;
                         carrinho[i] = 0;
                         printf("ESPETACULO CANCELADO DO CARRINHO!\n");  
                         break;
@@ -118,7 +122,7 @@ void ingressos_cancelar(void){
             };
         }
         if (a == 1) {
-            printf("NAO TEM NENHUM ESPETACULO COM ESSE CODIGO.");
+            printf("INFORME UM CODIGO VALIDO.");
         }
         fclose(ev);
         }
@@ -130,14 +134,27 @@ void ingressos_cancelar(void){
 
 void ingressos_carrinho(void){
     system("clear||cls");
+    int a = 1;
     printf("===============================\n        ~ GRAN C-IRCO ~\n            CARRINHO\n===============================\n");
+    for (int i = 0; i <= 21; i++) {
+        if (carrinho[i] != 0) {
+            a++;
+        }
+    }
+    if (a == 1) {
+        printf("CARRINHO VAZIO.");
+        printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+        getchar();
+        fflush(stdin);
+        return; 
+    }   
     FILE *ev; 
     ev = fopen("eventos.dat", "rb");
     if (ev == NULL) {
         printf("ERRO AO ABRIR O ARQUIVO.\n");
     } else {
         Eventos codcar;
-        for (int i = 0; i <= 20; i++) {
+        for (int i = 0; i <= 21; i++) {
             fseek(ev, 0, SEEK_SET);
             while (fread(&codcar, sizeof(Eventos), 1, ev) == 1) {
                 if (codcar.showcod == carrinho[i]){
@@ -175,21 +192,25 @@ void ingressos_finalizar(void){
         Cliente cad;
         cpf[strcspn(cpf, "\n")] = '\0'; senha[strcspn(senha, "\n")] = '\0';
         strncpy(cad.cpf, cpf, sizeof(cpf)); strncpy(cad.senha, senha, sizeof(cpf));
-        for (int i = 0; i <= x; i++) {
-            if (validaCod(carrinho[i])){
+        for (int i = 0; i <= 21; i++) {
+            if (validaIngresso(carrinho[i])) {
                 cad.compras[i] = carrinho[i];
-                carrinho[i] = 0; 
+            } else {
+                cad.compras[i] = 0;
             }         
         }
-        FILE *ev; 
-        ev = fopen("clientes.dat", "ab");
-        if (ev == NULL) {
+        FILE *cl; 
+        cl = fopen("clientes.dat", "ab");
+        if (cl == NULL) {
             printf("ERRO AO ABRIR O ARQUIVO.\n");
         } else {
-            fwrite(&cad, sizeof(Cliente), 1, ev);
+            fwrite(&cad, sizeof(Cliente), 1, cl);
             printf("\nCADASTRO REALIZADO COM SUCESSO!");
         }
-        fclose(ev);
+        fclose(cl);
+        for (int i = 0; i <= x; i++) {
+            carrinho[i] = 0; 
+        }   
         printf("\nRESERVA FINALIZADA!\nOBS: PARA VALIDAR SEU INGRESSO, BASTA REALIZAR O PAGAMENTO NA HORA DO SHOW\n");
         printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
         getchar();

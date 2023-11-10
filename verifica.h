@@ -9,3 +9,4 @@ bool validaCod(int codigo);
 bool validaLocal(char local[]);
 bool validaHorario(const char *horario);
 bool validaNumeros(char input[]);
+bool validaIngresso(int codIng);

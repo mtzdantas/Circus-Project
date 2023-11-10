@@ -48,8 +48,9 @@ void intro_profissional(void){
         system("clear||cls");
         printf("===============================\n        ~ GRAN C-IRCO ~\n     BEM VINDO FUNCIONARIO\n===============================\n");
         printf("[1]Eventos\n"); 
-        printf("[2]Relatorios\n");
-        printf("[3]Voltar\n");
+        printf("[2]Relatorio Clientes\n");
+        printf("[3]Relatorio Show\n");
+        printf("[4]Voltar\n");
         printf("DIGITE A OPCAO DESEJADA: ");
         scanf("%d", &option);
         fflush(stdin);
@@ -58,9 +59,12 @@ void intro_profissional(void){
                 profissional_eventos();
                 break;
             case 2:
-                profissional_relatorios();
+                profissional_relatCliente();
                 break;
             case 3:
+                profissional_relatShow();
+                break;
+            case 4:
                 stop = 1;
                 break;
             default:
@@ -106,33 +110,46 @@ void profissional_eventos(void){
     return;
 }
 
-void profissional_relatorios(void){
+void profissional_relatCliente(void){
     system("clear||cls");
     printf("===============================\n        ~ GRAN C-IRCO ~\n           RELATORIO\n===============================\n");
-    FILE *ev; 
-    ev = fopen("clientes.dat", "rb");
-    if (ev == NULL) {
+    FILE *cl; 
+    cl = fopen("clientes.dat", "rb");
+    if (cl == NULL) {
         printf("NAO EXISTE CLIENTES CADASTRADOS.\n");
         printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
         getchar();
         fflush(stdin);
     } else {
     Cliente rel;
-    while (fread(&rel, sizeof(Cliente), 1, ev) == 1) {
+    while (fread(&rel, sizeof(Cliente), 1, cl) == 1) {
         printf("CPF CLIENTE: %s\nSENHA: %s\n", rel.cpf, rel.senha);
-        printf("CODIGO(S) DA(S) COMPRA(S):");
-        for (int i = 0; i <= 20; i++) {
-            if (validaCod(rel.compras[i])){
-                printf("%d\n", rel.compras[i]);
+        printf("CODIGO(S) DA(S) COMPRA(S):\n");
+        int a = 0;
+        for (int i = 0; i <= 19; i++) {
+            if (rel.compras[i] != 0) {
+                printf("| %d |", rel.compras[i]);
+                a++;
+                if (a == 5){
+                    printf("\n");
+                    a = 0;
+                }
             }
         }
-        printf("===============================\n");  
+        printf("\n===============================\n");  
     }
-    fclose(ev);
+    fclose(cl);
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
     return;
     // Informacões de quantas vendas foram feitas, e quanto foi arrecatado... 
     }
+}
+
+void profissional_relatShow(void) {
+    printf("GERANDO RELATORIOS...\n");
+    printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+    getchar();
+    fflush(stdin);
 }
