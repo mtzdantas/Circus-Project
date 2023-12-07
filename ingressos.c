@@ -187,7 +187,7 @@ void ingressos_finalizar(void){
     printf("\nDIGITE 1 PARA FINALIZAR A RESERVA OU OUTRA TECLA PRA SAIR.\n");
     scanf("%d", &op);
     fflush(stdin);
-    if (op == 1){
+    if (op == 1) {
         // Diminuir a quantidade de vagas e cadastrar no relatório de vendas daquele evento.
         Cliente cad;
         cpf[strcspn(cpf, "\n")] = '\0'; senha[strcspn(senha, "\n")] = '\0';
@@ -219,7 +219,7 @@ void ingressos_finalizar(void){
     return;
 }
 
-void ingressos_comprados(void){
+void ingressos_comprados(void) {
     ordenar();
     do {
         system("clear||cls");
@@ -255,9 +255,6 @@ void ingressos_comprados(void){
                 }
             }
             printf("=============================================================================================\n");  
-
-        } else {
-            printf("NAO EXISTE CLIENTE COM ESSE CPF.\n");
         }
     }
     fclose(ev);
@@ -268,7 +265,7 @@ void ingressos_comprados(void){
     return;
 }
 
-void ingressos_sair(void){
+void ingressos_sair(void) {
     for (int i = 0; i <= x; i++) {
         carrinho[i] = 0; 
     }         
