@@ -19,6 +19,7 @@ int main(){
     int option;
     int stop = 1;
     while (stop == 1){
+        ordenar();
         system("clear||cls");
         printf("===============================\n        ~ GRAN C-IRCO ~\n    O VERDADEIRO ESPETACULO\n===============================\n");
         printf("[1]Atracoes\n"); printf("[2]Ingressos\n"); printf("[3]Buscar Reserva\n");

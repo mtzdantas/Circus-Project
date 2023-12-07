@@ -62,9 +62,7 @@ void ingressos_comprar(void){
     } while (cod1 == 1);
     FILE *ev; 
     ev = fopen("eventos.dat", "rb");
-    if (ev == NULL) {
-        printf("ERRO AO ABRIR O ARQUIVO.\n");
-    } else {
+    if (ev != NULL) {
         cod3 = cod1;
         Eventos cod3;
         int a = 1;
@@ -80,8 +78,8 @@ void ingressos_comprar(void){
         if (a == 1) {
             printf("NAO TEM NENHUM ESPETACULO COM ESSE CODIGO.");
         }
-        fclose(ev);
-        }
+    fclose(ev);
+    }
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
@@ -103,9 +101,7 @@ void ingressos_cancelar(void){
     } while (cod1 == 1);
     FILE *ev; 
     ev = fopen("eventos.dat", "rb");
-    if (ev == NULL) {
-        printf("ERRO AO ABRIR O ARQUIVO.\n");
-    } else {
+    if (ev != NULL) {
         cod3 = cod1;
         Eventos cod3;
         int a = 1;
@@ -124,8 +120,8 @@ void ingressos_cancelar(void){
         if (a == 1) {
             printf("INFORME UM CODIGO VALIDO.");
         }
-        fclose(ev);
-        }
+    fclose(ev);
+    }
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
@@ -154,15 +150,19 @@ void ingressos_carrinho(void){
         printf("ERRO AO ABRIR O ARQUIVO.\n");
     } else {
         Eventos codcar;
+        int t = 0;
+        printf("ITEM || CODIGO || DATA       || LOCAL                                                        || HORARIO || PRECO || VAGAS\n");
+        printf("==== || ====== || ========== || ============================================================ || ======= || ===== || =====\n");
         for (int i = 0; i <= 21; i++) {
             fseek(ev, 0, SEEK_SET);
             while (fread(&codcar, sizeof(Eventos), 1, ev) == 1) {
                 if (codcar.showcod == carrinho[i]){
-                    printf("EVENTO DE CODIGO: %d\nDATA: %d/%d/%d\nLOCAL: %s\nHORARIO: %s\nPRECO: R$%d REAIS\nVAGAS DISPONIVEIS: %d\n", codcar.showcod, codcar.dia, codcar.mes, codcar.ano, codcar.local, codcar.horario, codcar.preco, codcar.vagas);
-                    printf("===============================\n");
+                    t++;
+                    printf(" %02d  ||  %d   || %02d/%02d/%4d || %-60s ||  %s  || R$ %d || %d\n", t, codcar.showcod, codcar.dia, codcar.mes, codcar.ano, codcar.local, codcar.horario, codcar.preco, codcar.vagas);
                 }
             }
         }
+        printf("=========================================================================================================================");
     }
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
@@ -210,7 +210,7 @@ void ingressos_finalizar(void){
         fclose(cl);
         for (int i = 0; i <= x; i++) {
             carrinho[i] = 0; 
-        }   
+        }
         printf("\nRESERVA FINALIZADA!\nOBS: PARA VALIDAR SEU INGRESSO, BASTA REALIZAR O PAGAMENTO NA HORA DO SHOW\n");
         printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
         getchar();
@@ -220,6 +220,7 @@ void ingressos_finalizar(void){
 }
 
 void ingressos_comprados(void){
+    ordenar();
     do {
         system("clear||cls");
         printf("===============================\n        ~ GRAN C-IRCO ~\n      RESERVAS CONCLUIDAS\n===============================\n");
@@ -227,8 +228,40 @@ void ingressos_comprados(void){
         fgets(cpf, 12, stdin);
         fflush(stdin);
     } while (validaCPF(cpf) == 0);
-    // Fazer outra verificação se existe esse CPF cadastrado.
-    printf("LISTA DE INGRESSOS RESERVADOS.\n");
+    system("clear||cls");
+    FILE *cl; 
+    FILE *ev;
+    ev = fopen("eventos.dat", "rb");
+    cl = fopen("clientes.dat", "rb");
+    Cliente rel;
+    Eventos cod2;
+    while (fread(&rel, sizeof(Cliente), 1, cl) == 1) {
+        if (strcmp(rel.cpf, cpf) == 0) {
+            printf("===============================\n        ~ GRAN C-IRCO ~\n      RESERVAS CONCLUIDAS\n===============================\n");
+            printf("CPF CLIENTE: %s\n", rel.cpf);
+            printf("===============================\n");
+            printf("ITEM || DATA       || LOCAL                                                        || HORARIO\n");
+            printf("==== || ========== || ============================================================ || =======\n");
+            int t = 0;
+            for (int i = 0; i <= 19; i++) {
+                if (rel.compras[i] != 0) {
+                    rewind(ev);
+                    while (fread(&cod2, sizeof(Eventos), 1, ev) == 1) {
+                        if (rel.compras[i] == cod2.showcod) {
+                            t++;
+                            printf(" %02d  || %02d/%02d/%4d || %-60s || %s\n", t, cod2.dia, cod2.mes, cod2.ano, cod2.local, cod2.horario);
+                        }
+                    }
+                }
+            }
+            printf("=============================================================================================\n");  
+
+        } else {
+            printf("NAO EXISTE CLIENTE COM ESSE CPF.\n");
+        }
+    }
+    fclose(ev);
+    fclose(cl);
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);

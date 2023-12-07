@@ -4,6 +4,8 @@ void eventos_cancelar(void);
 void eventos_alterar(void);
 void opcao_invalida(void);
 void cadastra_evento(void);
+int compararPorData(const void *a, const void *b);
+int ordenar(void);
 
 typedef struct Eventos{
     char status;
