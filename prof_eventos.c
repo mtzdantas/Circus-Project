@@ -84,6 +84,7 @@ void eventos_cadastrar(void){
         fflush(stdin);
     } while (!validaNumeros(vagas));
     cod2.vagas = atoi(vagas);
+    cod2.vendas = 0;
     FILE *ev; 
     ev = fopen("eventos.dat", "ab");
     if (ev == NULL) {
@@ -190,30 +191,7 @@ void eventos_alterar(void){
         fflush(stdin);
     } while (!validaNumeros(vagas));
     cod2.vagas = atoi(vagas);
-
-    FILE *ev; 
-    ev = fopen("eventos.dat", "r+b");
-    if (ev == NULL) {
-        printf("ERRO AO ABRIR O ARQUIVO.\n");
-    }
-
-    else {
-        off_t tamanho = sizeof(Eventos);
-        int a = 1;
-        while(fread(&cod2, sizeof(Eventos), 1, ev)) {
-            if (cod == cod2.showcod) {
-                a++;
-                fseek(ev, -tamanho, SEEK_CUR);
-                fwrite(&cod2, sizeof(Eventos), 1, ev);
-                printf("ESPETACULO ALTERADO COM SUCESSO!\n");  
-                break;
-            };
-        }
-        if (a == 1) {
-            printf("NAO TEM NENHUM ESPETACULO COM ESSE CODIGO.");
-        }
-    }
-    fclose(ev);
+    atualizarEvento(list, cod2.dia, cod2.mes, cod2.ano, cod2.local, cod2.horario, cod2.preco, cod2.vagas);
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
@@ -221,6 +199,40 @@ void eventos_alterar(void){
 }
 
 /*FUNÇÕES ABAIXO FEITAS PELO CHAT GPT*/
+
+void atualizarEvento(int codigo, int novoDia, int novoMes, int novoAno, const char novoLocal[61], const char novoHorario[6], int novoPreco, int novaVagas) {
+    FILE *arquivo;
+    FILE *temporario;
+
+    arquivo = fopen("eventos.dat", "rb");
+    temporario = fopen("temp.dat", "wb");
+
+    if (arquivo == NULL || temporario == NULL) {
+        printf("ERRO AO ABRIR OS ARQUIVOS.\n");
+        exit(1);
+    }
+
+    Eventos evento;
+
+    while (fread(&evento, sizeof(Eventos), 1, arquivo) == 1) {
+        if (evento.showcod == codigo) {
+            evento.dia = novoDia;
+            evento.mes = novoMes;
+            evento.ano = novoAno;
+            strcpy(evento.local, novoLocal);
+            strcpy(evento.horario, novoHorario);
+            evento.preco = novoPreco;
+            evento.vagas = novaVagas;
+        }
+        fwrite(&evento, sizeof(Eventos), 1, temporario);
+    }
+
+    fclose(arquivo);
+    fclose(temporario);
+
+    remove("eventos.dat");
+    rename("temp.dat", "eventos.dat");
+}
 
 int compararPorData(const void *a, const void *b) {
     const Eventos *eventoA = (const Eventos *)a;

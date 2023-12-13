@@ -11,4 +11,7 @@ typedef struct Cliente {
     char senha[21];
     char cpf[12];
     int compras[20];
+    int dia;
+    int mes;
+    int ano;
 } Cliente;

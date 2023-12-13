@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "ingressos.h"
 #include "verifica.h"
 #include "prof_eventos.h"
@@ -158,7 +159,7 @@ void ingressos_carrinho(void){
             while (fread(&codcar, sizeof(Eventos), 1, ev) == 1) {
                 if (codcar.showcod == carrinho[i]){
                     t++;
-                    printf(" %02d  ||  %d   || %02d/%02d/%4d || %-60s ||  %s  || R$ %d || %d\n", t, codcar.showcod, codcar.dia, codcar.mes, codcar.ano, codcar.local, codcar.horario, codcar.preco, codcar.vagas);
+                    printf(" %02d  ||  %d   || %02d/%02d/%4d || %-60s ||  %s  || R$ %d || %d\n", t, codcar.showcod, codcar.dia, codcar.mes, codcar.ano, codcar.local, codcar.horario, codcar.preco, codcar.vagas);            
                 }
             }
         }
@@ -188,7 +189,7 @@ void ingressos_finalizar(void){
     scanf("%d", &op);
     fflush(stdin);
     if (op == 1) {
-        // Diminuir a quantidade de vagas e cadastrar no relatório de vendas daquele evento.
+        // Cadastrar vendas daquele evento.
         Cliente cad;
         cpf[strcspn(cpf, "\n")] = '\0'; senha[strcspn(senha, "\n")] = '\0';
         strncpy(cad.cpf, cpf, sizeof(cpf)); strncpy(cad.senha, senha, sizeof(cpf));
@@ -199,6 +200,12 @@ void ingressos_finalizar(void){
                 cad.compras[i] = 0;
             }         
         }
+        time_t t = time(NULL);
+        struct tm tm_info = *localtime(&t);
+        cad.dia = tm_info.tm_mday;
+        cad.mes = tm_info.tm_mon + 1;
+        cad.ano = tm_info.tm_year + 1900;
+
         FILE *cl; 
         cl = fopen("clientes.dat", "ab");
         if (cl == NULL) {
@@ -219,7 +226,7 @@ void ingressos_finalizar(void){
     return;
 }
 
-void ingressos_comprados(void) {
+void ingressos_comprados(void){
     ordenar();
     do {
         system("clear||cls");
@@ -265,7 +272,7 @@ void ingressos_comprados(void) {
     return;
 }
 
-void ingressos_sair(void) {
+void ingressos_sair(void){
     for (int i = 0; i <= x; i++) {
         carrinho[i] = 0; 
     }         

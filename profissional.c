@@ -49,8 +49,10 @@ void intro_profissional(void){
         printf("===============================\n        ~ GRAN C-IRCO ~\n     BEM VINDO FUNCIONARIO\n===============================\n");
         printf("[1]Eventos\n"); 
         printf("[2]Relatorio Clientes\n");
-        printf("[3]Relatorio Show\n");
-        printf("[4]Voltar\n");
+        printf("[3]Relatorio Individual do Cliente\n");
+        printf("[4]Relatorio Shows\n");
+        printf("[5]Relatorio Individual do Show\n");
+        printf("[6]Voltar\n");
         printf("DIGITE A OPCAO DESEJADA: ");
         scanf("%d", &option);
         fflush(stdin);
@@ -62,9 +64,15 @@ void intro_profissional(void){
                 profissional_relatCliente();
                 break;
             case 3:
-                profissional_relatShow();
+                profissional_relatClienteInd();
                 break;
             case 4:
+                profissional_relatShow();
+                break;
+            case 5:
+                profissional_relatShowInd();
+                break;
+            case 6:
                 stop = 1;
                 break;
             default:
@@ -124,19 +132,18 @@ void profissional_relatCliente(void){
     Cliente rel;
     while (fread(&rel, sizeof(Cliente), 1, cl) == 1) {
         printf("CPF CLIENTE: %s\nSENHA: %s\n", rel.cpf, rel.senha);
-        printf("CODIGO(S) DA(S) COMPRA(S):\n");
-        int a = 0;
+        printf("================================\n");
+        printf("ITEM || CODIGO || DATA DA COMPRA\n");
+        printf("==== || ====== || ==============\n");
+        int b = 0;
         for (int i = 0; i <= 19; i++) {
             if (rel.compras[i] != 0) {
-                printf("| %d |", rel.compras[i]);
-                a++;
-                if (a == 5){
-                    printf("\n");
-                    a = 0;
+                b++;
+                printf(" %02d  ||  %d   ||   %02d/%02d/%4d  \n", b, rel.compras[i], rel.dia, rel.mes, rel.ano);
                 }
             }
-        }
-        printf("\n===============================\n");  
+        printf("================================\n");
+        }  
     }
     fclose(cl);
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
@@ -144,7 +151,10 @@ void profissional_relatCliente(void){
     fflush(stdin);
     return;
     // Informacões de quantas vendas foram feitas, e quanto foi arrecatado... 
-    }
+}
+
+void profissional_relatClienteInd(void){
+    printf("RELATORIO CLIENTE INDIVIDUAL.");
 }
 
 void profissional_relatShow(void) {
@@ -152,4 +162,8 @@ void profissional_relatShow(void) {
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     fflush(stdin);
+}
+
+void profissional_relatShowInd(void){
+    printf("RELATORIO SHOW INDIVIDUAL.");
 }

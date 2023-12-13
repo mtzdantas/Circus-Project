@@ -120,7 +120,7 @@ bool validaLocal(char local[]) {
     if (strlen(local) > 20) {
         return true;
     } else {
-        printf("\nADICIONE MAIS INFORMAÇOES.\n");
+        printf("\nADICIONE MAIS INFORMACOES.\n");
         return false;
     }
 }
