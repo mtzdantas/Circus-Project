@@ -15,24 +15,24 @@ int verificar_profissional(){
         printf("===============================\n        ~ GRAN C-IRCO ~\n       LOGIN EMPRESARIAL\n===============================\n");
         printf("INFORME O LOGIN:\n");
         fgets(trylogin, 6, stdin);
-        fflush(stdin);
+        limpar_buffer();
         printf("INFORME A SENHA:\n");
         fgets(trysenha, 9, stdin);
-        fflush(stdin);
+        limpar_buffer();
         checklog = strcmp(entlogin, trylogin);
         checksen = strcmp(entsenha, trysenha);
         if (checklog == 0 && checksen == 0) {
             printf("LOGIN REALIZADO COM SUCESSO.\n");
             printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
             getchar();
-            fflush(stdin);
+            limpar_buffer();
             return 1;
         }
         else {
             printf("LOGIN OU SENHA INCORRETOS.\n");
             printf("DIGITE '2' PARA SAIR OU ENTER PARA CONTINUAR.\n");
             scanf("%d", &cancel);
-            fflush(stdin);
+            limpar_buffer();
             if (cancel == 2){
                 return 0;
             }
@@ -55,7 +55,7 @@ void intro_profissional(void){
         printf("[6]Voltar\n");
         printf("DIGITE A OPCAO DESEJADA: ");
         scanf("%d", &option);
-        fflush(stdin);
+        limpar_buffer();
         switch (option){
             case 1:
                 profissional_eventos();
@@ -93,7 +93,7 @@ void profissional_eventos(void){
         printf("[4]Alterar\n"); printf("[5]Voltar\n");
         printf("DIGITE A OPCAO DESEJADA: ");
         scanf("%d", &option);
-        fflush(stdin);
+        limpar_buffer();
         switch (option){
             case 1:
                 eventos_listar();
@@ -127,7 +127,7 @@ void profissional_relatCliente(void){
         printf("NAO EXISTE CLIENTES CADASTRADOS.\n");
         printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
         getchar();
-        fflush(stdin);
+        limpar_buffer();
     } else {
     Cliente rel;
     while (fread(&rel, sizeof(Cliente), 1, cl) == 1) {
@@ -148,7 +148,7 @@ void profissional_relatCliente(void){
     fclose(cl);
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
-    fflush(stdin);
+    limpar_buffer();
     return;
     // Informacões de quantas vendas foram feitas, e quanto foi arrecatado... 
 }
@@ -161,7 +161,7 @@ void profissional_relatShow(void) {
     printf("GERANDO RELATORIOS...\n");
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
-    fflush(stdin);
+    limpar_buffer();
 }
 
 void profissional_relatShowInd(void){

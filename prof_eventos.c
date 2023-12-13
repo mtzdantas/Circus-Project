@@ -19,7 +19,7 @@ void eventos_listar(void){
         printf("NAO EXISTE EVENTOS CADASTRADOS.\n");
         printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
         getchar();
-        fflush(stdin);
+        limpar_buffer();
     } else {
     Eventos cod2;
     int t = 0;
@@ -35,7 +35,7 @@ void eventos_listar(void){
     fclose(ev);
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
-    fflush(stdin);
+    limpar_buffer();
     return;
     }
 }
@@ -46,7 +46,7 @@ void eventos_cadastrar(void){
     do {
         printf("CODIGO DE ESPETACULO (3 DIGITOS):\n");
         scanf("%d", &cod);
-        fflush(stdin);
+        limpar_buffer();
     } while (!validaCod(cod));
     cod2 = cod;
     Eventos cod2;
@@ -55,33 +55,33 @@ void eventos_cadastrar(void){
     do {
         printf("DATA DO EVENTO (DD/MM/AAAA):\n");
         scanf("%d/%d/%d", &dia, &mes, &ano);
-        fflush(stdin);
+        limpar_buffer();
     } while (!validaData(dia, mes, ano));
     cod2.dia = dia; cod2.mes = mes; cod2.ano = ano;
     do {
         printf("LOCALIZACAO:\n");
         fgets(local, sizeof(local), stdin);
-        fflush(stdin);
+        limpar_buffer();
     } while (!validaLocal(local));
     local[strcspn(local, "\n")] = '\0';
     strncpy(cod2.local, local, 61);
     do {
         printf("HORARIO (HH:MM):\n");
         fgets(horario, sizeof(horario), stdin);
-        fflush(stdin);
+        limpar_buffer();
     } while (!validaHorario(horario));
     horario[strcspn(horario, "\n")] = '\0';
     strncpy(cod2.horario, horario, 6);
     do {
         printf("PRECO DO INGRESSO:\n");
         fgets(preco, sizeof(preco), stdin);
-        fflush(stdin);
+        limpar_buffer();
     } while (!validaNumeros(preco));
     cod2.preco = atoi(preco);
     do {
         printf("VAGAS DISPONIBILIZADAS:\n");
         fgets(vagas, sizeof(vagas), stdin);
-        fflush(stdin);
+        limpar_buffer();
     } while (!validaNumeros(vagas));
     cod2.vagas = atoi(vagas);
     cod2.vendas = 0;
@@ -96,7 +96,7 @@ void eventos_cadastrar(void){
     fclose(ev);
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
-    fflush(stdin);
+    limpar_buffer();
     return;
 }
 
@@ -111,7 +111,7 @@ void eventos_cancelar(void){
         printf("DIGITE O CODIGO DO ESPETACULO QUE VOCE DESEJA CANCELAR:\n");
         printf("PARA CONSULTAR A LISTA DE ESPETACULOS, DIGITE '1'.\n");
         scanf("%d", &cod2);
-        fflush(stdin);
+        limpar_buffer();
     } while (cod2 == 1);
     FILE *ev; 
     ev = fopen("eventos.dat", "r+b");
@@ -139,7 +139,7 @@ void eventos_cancelar(void){
         }
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
-    fflush(stdin);
+    limpar_buffer();
     return;
 }
 
@@ -154,7 +154,7 @@ void eventos_alterar(void){
         printf("DIGITE O CODIGO DO EVENTO QUE DESEJA ALTERAR: \n");
         printf("PARA CONSULTAR A LISTA DE ESPETACULOS, DIGITE '1'.\n");
         scanf("%d", &list);
-        fflush(stdin);
+        limpar_buffer();
     } while (list == 1);
     system("clear||cls");
     printf("===============================\n        ~ GRAN C-IRCO ~\n            ALTERAR\n===============================\n");
@@ -162,39 +162,39 @@ void eventos_alterar(void){
     do {
         printf("NOVA DATA DO EVENTO (DD/MM/AAAA):\n");
         scanf("%d/%d/%d", &dia, &mes, &ano);
-        fflush(stdin);
+        limpar_buffer();
     } while (!validaData(dia, mes, ano));
     cod2.dia = dia; cod2.mes = mes; cod2.ano = ano;
     do {
         printf("NOVA LOCALIZACAO:\n");
         fgets(local, sizeof(local), stdin);
-        fflush(stdin);
+        limpar_buffer();
     } while (!validaLocal(local));
     local[strcspn(local, "\n")] = '\0';
     strncpy(cod2.local, local, 61);
     do {
         printf("NOVO HORARIO (HH:MM):\n");
         fgets(horario, sizeof(horario), stdin);
-        fflush(stdin);
+        limpar_buffer();
     } while (!validaHorario(horario));
     horario[strcspn(horario, "\n")] = '\0';
     strncpy(cod2.horario, horario, 6);
     do {
         printf("NOVO PRECO DO INGRESSO:\n");
         fgets(preco, sizeof(preco), stdin);
-        fflush(stdin);
+        limpar_buffer();
     } while (!validaNumeros(preco));
     cod2.preco = atoi(preco);
     do {
         printf("NOVAS VAGAS DISPONIBILIZADAS:\n");
         fgets(vagas, sizeof(vagas), stdin);
-        fflush(stdin);
+        limpar_buffer();
     } while (!validaNumeros(vagas));
     cod2.vagas = atoi(vagas);
     atualizarEvento(list, cod2.dia, cod2.mes, cod2.ano, cod2.local, cod2.horario, cod2.preco, cod2.vagas);
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
-    fflush(stdin);
+    limpar_buffer();
     return;
 }
 

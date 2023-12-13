@@ -21,7 +21,7 @@ void intro_ingressos(void){
         printf("[4]Finalizar\n"); printf("[5]Voltar\n");
         printf("DIGITE A OPCAO DESEJADA: ");
         scanf("%d", &option);
-        fflush(stdin);
+        limpar_buffer();
         switch (option){
             case 1: 
                 ingressos_comprar();
@@ -59,7 +59,7 @@ void ingressos_comprar(void){
         printf("DIGITE O CODIGO DO ESPETACULO QUE VOCE DESEJA RESERVAR O INGRESSO:\n");
         printf("PARA CONSULTAR A LISTA DE ESPETACULOS, DIGITE '1'.\n");
         scanf("%d", &cod1);
-        fflush(stdin);   
+        limpar_buffer();   
     } while (cod1 == 1);
     FILE *ev; 
     ev = fopen("eventos.dat", "rb");
@@ -83,7 +83,7 @@ void ingressos_comprar(void){
     }
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
-    fflush(stdin);
+    limpar_buffer();
     return;
 }
 
@@ -98,7 +98,7 @@ void ingressos_cancelar(void){
         printf("DIGITE O CODIGO DO ESPETACULO QUE VOCE DESEJA CANCELAR O INGRESSO:\n");
         printf("PARA CONSULTAR O SEU CARRINHO, DIGITE '1'.\n");
         scanf("%d", &cod1);
-        fflush(stdin);   
+        limpar_buffer();   
     } while (cod1 == 1);
     FILE *ev; 
     ev = fopen("eventos.dat", "rb");
@@ -125,7 +125,7 @@ void ingressos_cancelar(void){
     }
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
-    fflush(stdin);
+    limpar_buffer();
     return;
 }
 
@@ -142,7 +142,7 @@ void ingressos_carrinho(void){
         printf("CARRINHO VAZIO.");
         printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
         getchar();
-        fflush(stdin);
+        limpar_buffer();
         return; 
     }   
     FILE *ev; 
@@ -167,7 +167,7 @@ void ingressos_carrinho(void){
     }
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
-    fflush(stdin);
+    limpar_buffer();
     return;
 }   
 
@@ -178,16 +178,16 @@ void ingressos_finalizar(void){
         printf("===============================\n        ~ GRAN C-IRCO ~\n           FINALIZAR\n===============================\n");
         printf("INFORME SEU CPF (APENAS NUMEROS):\n");
         fgets(cpf, sizeof(cpf), stdin);
-        fflush(stdin);
+        limpar_buffer();
     } while (validaCPF(cpf) == 0);
     printf("INFORME SUA SENHA (ATE 20 CARACTERES):\n");
     fgets(senha, sizeof(senha), stdin);
-    fflush(stdin);
+    limpar_buffer();
     printf("CPF: %s", cpf);
     printf("\nSENHA: %s", senha);
     printf("\nDIGITE 1 PARA FINALIZAR A RESERVA OU OUTRA TECLA PRA SAIR.\n");
     scanf("%d", &op);
-    fflush(stdin);
+    limpar_buffer();
     if (op == 1) {
         // Cadastrar vendas daquele evento.
         Cliente cad;
@@ -221,7 +221,7 @@ void ingressos_finalizar(void){
         printf("\nRESERVA FINALIZADA!\nOBS: PARA VALIDAR SEU INGRESSO, BASTA REALIZAR O PAGAMENTO NA HORA DO SHOW\n");
         printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
         getchar();
-        fflush(stdin);
+        limpar_buffer();
     }
     return;
 }
@@ -233,7 +233,7 @@ void ingressos_comprados(void){
         printf("===============================\n        ~ GRAN C-IRCO ~\n      RESERVAS CONCLUIDAS\n===============================\n");
         printf("DIGITE SEU CPF:\n");
         fgets(cpf, 12, stdin);
-        fflush(stdin);
+        limpar_buffer();
     } while (validaCPF(cpf) == 0);
     system("clear||cls");
     FILE *cl; 
@@ -268,7 +268,7 @@ void ingressos_comprados(void){
     fclose(cl);
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
-    fflush(stdin);
+    limpar_buffer();
     return;
 }
 
@@ -285,7 +285,7 @@ void opcao_invalida(void){
     printf("POR FAVOR, SELECIONE UMA OPCAO VALIDA.\n");
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
-    fflush(stdin);
+    limpar_buffer();
     system("clear||cls");
     return;
 }
