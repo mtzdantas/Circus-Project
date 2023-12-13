@@ -168,3 +168,11 @@ bool validaIngresso(int codIng) {
     }
     return false;
 }
+
+// Feito com a ajuda do Chat GPT
+void limpar_buffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF) {
+        // Lê e descarta cada caractere até encontrar uma nova linha ('\n') ou o fim do arquivo (EOF)
+    }
+}
