@@ -12,6 +12,7 @@
 #include "ingressos.h"
 #include "profissional.h"
 #include "prof_eventos.h"
+#include "verifica.h"
 
 void sobre(void);
 
@@ -39,6 +40,8 @@ int main(){
                 break;
             case 4:
                 sobre();
+                getchar();
+                fflush(stdin);
                 break;
             case 5:
                 if (verificar_profissional() == 1) {
@@ -70,7 +73,5 @@ void sobre(void){
     printf("clientes e funcionarios.\n");
     printf("~ Developed By Mateus Dantas de Oliveira.\n");
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-    getchar();
-    fflush(stdin);
     return;
 }
