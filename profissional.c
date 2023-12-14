@@ -119,6 +119,7 @@ void profissional_eventos(void){
 }
 
 void profissional_relatCliente(void){
+    int r = 0;
     system("clear||cls");
     printf("===============================\n        ~ GRAN C-IRCO ~\n           RELATORIO\n===============================\n");
     FILE *cl; 
@@ -131,7 +132,8 @@ void profissional_relatCliente(void){
     } else {
     Cliente rel;
     while (fread(&rel, sizeof(Cliente), 1, cl) == 1) {
-        printf("CPF CLIENTE: %s\nSENHA: %s\n", rel.cpf, rel.senha);
+        r++;
+        printf("CPF CLIENTE: %s\n", rel.cpf);
         printf("================================\n");
         printf("ITEM || CODIGO || DATA DA COMPRA\n");
         printf("==== || ====== || ==============\n");
@@ -145,25 +147,67 @@ void profissional_relatCliente(void){
         printf("================================\n");
         }  
     }
+    printf("NUMERO TOTAL DE CLIENTES: %d\n", r);
+    printf("================================\n");
     fclose(cl);
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     limpar_buffer();
     return;
-    // Informacões de quantas vendas foram feitas, e quanto foi arrecatado... 
 }
 
 void profissional_relatClienteInd(void){
-    printf("RELATORIO CLIENTE INDIVIDUAL.");
+    char cpf[12];
+    do {
+        system("clear||cls");
+        printf("===============================\n        ~ GRAN C-IRCO ~\n           RELATORIO\n===============================\n");
+        printf("DIGITE O CPF DO CLIENTE:\n");
+        fgets(cpf, 12, stdin);
+        limpar_buffer();
+    } while (validaCPF(cpf) == 0);
+    system("clear||cls");
+    FILE *cl; 
+    cl = fopen("clientes.dat", "rb");
+    Cliente rel;
+    while (fread(&rel, sizeof(Cliente), 1, cl) == 1) {
+        if (strcmp(rel.cpf, cpf) == 0) {
+            printf("===============================\n        ~ GRAN C-IRCO ~\n           RELATORIO\n===============================\n");
+            printf("CPF CLIENTE: %s\n", rel.cpf);
+            printf("===============================\n");
+            printf("ITEM || CODIGO || DATA DA COMPRA\n");
+            printf("==== || ====== || ==============\n");
+            int t = 0;
+            for (int i = 0; i <= 19; i++) {
+                if (rel.compras[i] != 0) {
+                    t++;
+                    printf(" %02d  ||  %d   ||   %02d/%02d/%4d  \n", t, rel.compras[i], rel.dia, rel.mes, rel.ano);
+                }
+            }
+            printf("================================\n");  
+        }
+    }
+    fclose(cl);
+    printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+    getchar();
+    limpar_buffer();
+    return;
 }
 
 void profissional_relatShow(void) {
+    system("clear||cls");
+    printf("===============================\n        ~ GRAN C-IRCO ~\n           RELATORIO\n===============================\n");
     printf("GERANDO RELATORIOS...\n");
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
     getchar();
     limpar_buffer();
+    // Informacões de quantas vendas foram feitas, e quanto foi arrecatado... 
 }
 
 void profissional_relatShowInd(void){
+    system("clear||cls");
+    printf("===============================\n        ~ GRAN C-IRCO ~\n           RELATORIO\n===============================\n");
     printf("RELATORIO SHOW INDIVIDUAL.");
+    printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+    getchar();
+    limpar_buffer();
 }

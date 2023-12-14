@@ -6,7 +6,7 @@
 #include "verifica.h"
 #include "prof_eventos.h"
 int cod1 = 0, cod3, carrinho[20], x = 0;
-char cpf[12], senha[21];
+char cpf[12];
 
 void intro_ingressos(void){
     int stop = 0;
@@ -180,19 +180,15 @@ void ingressos_finalizar(void){
         fgets(cpf, sizeof(cpf), stdin);
         limpar_buffer();
     } while (validaCPF(cpf) == 0);
-    printf("INFORME SUA SENHA (ATE 20 CARACTERES):\n");
-    fgets(senha, sizeof(senha), stdin);
-    limpar_buffer();
-    printf("CPF: %s", cpf);
-    printf("\nSENHA: %s", senha);
+    printf("CPF DIGITADO: %s", cpf);
     printf("\nDIGITE 1 PARA FINALIZAR A RESERVA OU OUTRA TECLA PRA SAIR.\n");
     scanf("%d", &op);
     limpar_buffer();
     if (op == 1) {
         // Cadastrar vendas daquele evento.
         Cliente cad;
-        cpf[strcspn(cpf, "\n")] = '\0'; senha[strcspn(senha, "\n")] = '\0';
-        strncpy(cad.cpf, cpf, sizeof(cpf)); strncpy(cad.senha, senha, sizeof(cpf));
+        cpf[strcspn(cpf, "\n")] = '\0';
+        strncpy(cad.cpf, cpf, sizeof(cpf));
         for (int i = 0; i <= 21; i++) {
             if (validaIngresso(carrinho[i])) {
                 cad.compras[i] = carrinho[i];
