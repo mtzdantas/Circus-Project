@@ -18,23 +18,23 @@ void eventos_listar(void){
     if (ev == NULL) {
         printf("NAO EXISTE EVENTOS CADASTRADOS.\n");
         printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-        getchar();
+        
         limpar_buffer();
     } else {
     Eventos cod2;
     int t = 0;
-    printf("SHOW || CODIGO || DATA       || LOCAL                                                        || HORARIO || PRECO || VAGAS\n");
-    printf("==== || ====== || ========== || ============================================================ || ======= || ===== || =====\n");
+    printf("SHOW || CODIGO || DATA       || LOCAL                                                        || HORARIO || PRECO || VAGAS || VAGAS RESTANTES\n");
+    printf("==== || ====== || ========== || ============================================================ || ======= || ===== || ===== || ===============\n");
     while (fread(&cod2, sizeof(Eventos), 1, ev) == 1) {
         if (cod2.status != 'x') {
             t++;
-            printf(" %02d  ||  %d   || %02d/%02d/%4d || %-60s ||  %s  || R$ %d || %d\n", t, cod2.showcod, cod2.dia, cod2.mes, cod2.ano, cod2.local, cod2.horario, cod2.preco, cod2.vagas);
+            printf(" %02d  ||  %d   || %02d/%02d/%4d || %-60s ||  %s  || R$ %d ||  %d  ||       %d \n", t, cod2.showcod, cod2.dia, cod2.mes, cod2.ano, cod2.local, cod2.horario, cod2.preco, cod2.vagas, cod2.vagas-cod2.vendas);
         }
     }
-    printf("=========================================================================================================================");
+    printf("============================================================================================================================================");
     fclose(ev);
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-    getchar();
+    
     limpar_buffer();
     return;
     }
@@ -95,7 +95,7 @@ void eventos_cadastrar(void){
     }
     fclose(ev);
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-    getchar();
+    
     limpar_buffer();
     return;
 }
@@ -138,7 +138,7 @@ void eventos_cancelar(void){
         fclose(ev);
         }
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-    getchar();
+    
     limpar_buffer();
     return;
 }
@@ -193,7 +193,7 @@ void eventos_alterar(void){
     cod2.vagas = atoi(vagas);
     atualizarEvento(list, cod2.dia, cod2.mes, cod2.ano, cod2.local, cod2.horario, cod2.preco, cod2.vagas);
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-    getchar();
+    
     limpar_buffer();
     return;
 }

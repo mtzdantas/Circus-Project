@@ -24,7 +24,7 @@ int verificar_profissional(){
         if (checklog == 0 && checksen == 0) {
             printf("LOGIN REALIZADO COM SUCESSO.\n");
             printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-            getchar();
+            
             limpar_buffer();
             return 1;
         }
@@ -126,9 +126,6 @@ void profissional_relatCliente(void){
     cl = fopen("clientes.dat", "rb");
     if (cl == NULL) {
         printf("NAO EXISTE CLIENTES CADASTRADOS.\n");
-        printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-        getchar();
-        limpar_buffer();
     } else {
     Cliente rel;
     while (fread(&rel, sizeof(Cliente), 1, cl) == 1) {
@@ -151,7 +148,7 @@ void profissional_relatCliente(void){
     printf("================================\n");
     fclose(cl);
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-    getchar();
+    
     limpar_buffer();
     return;
 }
@@ -188,26 +185,80 @@ void profissional_relatClienteInd(void){
     }
     fclose(cl);
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-    getchar();
+    
     limpar_buffer();
     return;
 }
 
 void profissional_relatShow(void) {
+    int total = 0;
+    ordenar();
     system("clear||cls");
     printf("===============================\n        ~ GRAN C-IRCO ~\n           RELATORIO\n===============================\n");
-    printf("GERANDO RELATORIOS...\n");
+    FILE *ev; 
+    ev = fopen("eventos.dat", "rb");
+    if (ev == NULL) {
+        printf("NAO EXISTE EVENTOS CADASTRADOS.\n");
+        printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
+        
+        limpar_buffer();
+    } else {
+    Eventos cod2;
+    int t = 0;
+    printf("SHOW || CODIGO || PRECO || VAGAS || VAGAS RESTANTES || VALOR ARRECADADO\n");
+    printf("==== || ====== || ===== || ===== || =============== || ================\n");
+    while (fread(&cod2, sizeof(Eventos), 1, ev) == 1) {
+        if (cod2.status != 'x') {
+            t++;
+            int resultado;
+            resultado = cod2.vendas * cod2.preco;
+            printf(" %02d  ||  %d   || R$ %d ||  %d  ||       %d       ||     R$ %d     \n", t, cod2.showcod, cod2.preco, cod2.vagas, cod2.vagas-cod2.vendas, resultado);
+            total += resultado;
+        }
+    }
+    printf("========================================================================");
+    printf("\nVALOR TOTAL ARRECADADO: %d\n", total);
+    printf("========================================================================");
+    fclose(ev);
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-    getchar();
     limpar_buffer();
+    return;
     // Informacões de quantas vendas foram feitas, e quanto foi arrecatado... 
+    }
 }
 
 void profissional_relatShowInd(void){
+    int cod = 0;
     system("clear||cls");
-    printf("===============================\n        ~ GRAN C-IRCO ~\n           RELATORIO\n===============================\n");
-    printf("RELATORIO SHOW INDIVIDUAL.");
+    do {
+        if (cod == 1){
+            eventos_listar();
+            system("clear||cls");
+        }
+        printf("===============================\n        ~ GRAN C-IRCO ~\n           RELATORIO\n===============================\n");
+        printf("DIGITE O CODIGO DO SHOW:\n");
+        scanf("%d", &cod);
+        limpar_buffer(); 
+    } while (validaCod(cod));
+    system("clear||cls");
+    FILE *ev; 
+    ev = fopen("eventos.dat", "rb");
+    Eventos cod2;
+    while (fread(&cod2, sizeof(Eventos), 1, ev) == 1) {
+        if (cod2.showcod == cod) {
+            int resultado;
+            resultado = cod2.vendas * cod2.preco;
+            printf("================================\n        ~ GRAN C-IRCO ~\n           RELATORIO\n===============================\n");
+            printf("CODIGO DO SHOW: %d\n", cod2.showcod);
+            printf("================================\n");
+            printf("PRECO || VAGAS || VAGAS RESTANTES || VALOR ARRECADADO\n");
+            printf("===== || ===== || =============== || ================\n");
+            printf("R$ %d ||  %d  ||       %d       ||     R$ %d     \n", cod2.preco, cod2.vagas, cod2.vagas-cod2.vendas, resultado);
+            printf("=====================================================\n");  
+        }
+    }
+    fclose(ev);
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-    getchar();
     limpar_buffer();
+    return;
 }

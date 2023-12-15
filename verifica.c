@@ -16,7 +16,7 @@ int validaCPF(char *cpf)
     if (strlen(cpf) != 11) {
         printf("\nPRECISA CONTER 11 DIGITOS!\n");
         printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-        getchar();
+        
         return 0;
     }
 
@@ -25,7 +25,7 @@ int validaCPF(char *cpf)
         if (cpf[i] < '0' || cpf[i] > '9') {
             printf("\nAPENAS NUMEROS POR FAVOR!\n");
             printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-            getchar();
+            
             return 0;
         }
     }
@@ -44,7 +44,7 @@ int validaCPF(char *cpf)
     if (cpf[9] - '0' != firstDigit) {
         printf("DIGITE O CPF CORRETAMENTE.");
         printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-        getchar();
+        
         return 0;
     }
 
@@ -62,7 +62,7 @@ int validaCPF(char *cpf)
     if (cpf[10] - '0' != secndDigit) {
         printf("DIGITE O CPF CORRETAMENTE.");
         printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-        getchar();
+        
         return 0;
     }
 

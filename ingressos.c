@@ -82,7 +82,7 @@ void ingressos_comprar(void){
     fclose(ev);
     }
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-    getchar();
+    
     limpar_buffer();
     return;
 }
@@ -124,7 +124,7 @@ void ingressos_cancelar(void){
     fclose(ev);
     }
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-    getchar();
+    
     limpar_buffer();
     return;
 }
@@ -141,7 +141,7 @@ void ingressos_carrinho(void){
     if (a == 1) {
         printf("CARRINHO VAZIO.");
         printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-        getchar();
+        
         limpar_buffer();
         return; 
     }   
@@ -166,7 +166,7 @@ void ingressos_carrinho(void){
         printf("=========================================================================================================================");
     }
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-    getchar();
+    
     limpar_buffer();
     return;
 }   
@@ -211,12 +211,15 @@ void ingressos_finalizar(void){
             printf("\nCADASTRO REALIZADO COM SUCESSO!");
         }
         fclose(cl);
+
+        atualizarVendas("clientes.dat", "eventos.dat");
+
         for (int i = 0; i <= x; i++) {
             carrinho[i] = 0; 
         }
         printf("\nRESERVA FINALIZADA!\nOBS: PARA VALIDAR SEU INGRESSO, BASTA REALIZAR O PAGAMENTO NA HORA DO SHOW\n");
         printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-        getchar();
+        
         limpar_buffer();
     }
     return;
@@ -263,7 +266,7 @@ void ingressos_comprados(void){
     fclose(ev);
     fclose(cl);
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-    getchar();
+    
     limpar_buffer();
     return;
 }
@@ -280,8 +283,57 @@ void opcao_invalida(void){
     printf("===============================\n        ~ GRAN C-IRCO ~\n        ERRO ENCONTRADO\n===============================\n");
     printf("POR FAVOR, SELECIONE UMA OPCAO VALIDA.\n");
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-    getchar();
+    
     limpar_buffer();
     system("clear||cls");
     return;
+}
+
+/*FEITA PELO CHAT GPT*/
+
+void atualizarVendas(const char* clientesFile, const char* eventosFile) {
+    // Abre o arquivo de clientes para leitura
+    FILE *clientes = fopen(clientesFile, "rb");
+    if (clientes == NULL) {
+        perror("Erro ao abrir arquivo de clientes");
+        exit(EXIT_FAILURE);
+    }
+
+    // Abre o arquivo de eventos para leitura e escrita
+    FILE *eventos = fopen(eventosFile, "r+b");
+    if (eventos == NULL) {
+        perror("Erro ao abrir arquivo de eventos");
+        fclose(clientes);
+        exit(EXIT_FAILURE);
+    }
+
+    // Lê os clientes do arquivo
+    Cliente cliente;
+    while (fread(&cliente, sizeof(Cliente), 1, clientes) == 1) {
+        // Itera sobre as compras do cliente
+        for (int i = 0; i < 20; i++) {
+            int showcod = cliente.compras[i];
+
+            // Verifica se a compra é válida (não é zero)
+            if (showcod != 0) {
+                // Procura o evento no arquivo de eventos pelo showcod
+                Eventos evento;
+                while (fread(&evento, sizeof(Eventos), 1, eventos) == 1) {
+                    if (evento.showcod == showcod) {
+                        // Atualiza o número de vendas e escreve de volta no arquivo
+                        evento.vendas += 1;
+                        fseek(eventos, (long)-sizeof(Eventos), SEEK_CUR);
+                        fwrite(&evento, sizeof(Eventos), 1, eventos);
+                        break;  // Sai do loop após encontrar o evento
+                    }
+                }
+                // Volta ao início do arquivo de eventos para futuras leituras
+                rewind(eventos);
+            }
+        }
+    }
+
+    // Fecha os arquivos
+    fclose(clientes);
+    fclose(eventos);
 }

@@ -71,7 +71,7 @@ void sobre(void){
     printf("clientes e funcionarios.\n");
     printf("~ Developed By Mateus Dantas de Oliveira.\n");
     printf("\n- PRESSIONE ENTER PARA CONTINUAR.");
-    getchar();
+    
     limpar_buffer();
     return;
 }
